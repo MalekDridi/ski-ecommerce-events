@@ -15,10 +15,8 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 
-
 public class Contract implements Serializable {
 
-	@EmbeddedId
 	private ContractPk contractPk;
 	private Date startDate;
 	private Date endDate;
@@ -27,33 +25,25 @@ public class Contract implements Serializable {
 	private User user;
 	private Company company;
 
-	
-	
-	
 	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "idUser", referencedColumnName = "idUser",
-	insertable = false, updatable = false)
+	@JoinColumn(name = "idUser", referencedColumnName = "idUser", insertable = false, updatable = false)
 	public User getUser() {
 		return user;
 	}
-	
 
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "idCompany", referencedColumnName = "idCompany", insertable = false, updatable = false)
 	public Company getCompany() {
 		return company;
 	}
-	
-	
-	
+
 	public Contract() {
 		super();
 	}
 
-
 	public Contract(Date startDate, Date endDate, int montant, String description, User user, Company company) {
 		super();
-		this.contractPk=new ContractPk(user.getIdUser(),company.getIdCompany());
+		this.contractPk = new ContractPk(user.getIdUser(), company.getIdCompany());
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.Montant = montant;
@@ -64,7 +54,7 @@ public class Contract implements Serializable {
 
 	public Contract(Date startDate, Date endDate, int montant, String description, int iduser, int idcompany) {
 		super();
-		this.contractPk=new ContractPk(iduser,idcompany);
+		this.contractPk = new ContractPk(iduser, idcompany);
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.Montant = montant;
@@ -75,7 +65,6 @@ public class Contract implements Serializable {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
 
 	public int getMontant() {
 		return Montant;
@@ -98,8 +87,6 @@ public class Contract implements Serializable {
 	}
 
 	private static final long serialVersionUID = 1L;
-
-
 
 	@EmbeddedId
 	public ContractPk getContractPk() {
@@ -125,7 +112,6 @@ public class Contract implements Serializable {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-
 
 	@Override
 	public String toString() {
