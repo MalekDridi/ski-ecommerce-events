@@ -36,6 +36,12 @@ public class User implements Serializable {
 	private int cin;
 	private String password;
 	private String avatar;
+	@OneToMany(mappedBy = "user")
+	private List<Equipment> equipments;
+	@OneToMany(mappedBy = "idTrasmitter")
+	private List<Trade> tradesT;
+	@OneToMany(mappedBy = "idReceiver")
+	private List<Trade> tradesR;
 	
 	@ManyToMany(mappedBy = "users")
 	private List<Event> events;
