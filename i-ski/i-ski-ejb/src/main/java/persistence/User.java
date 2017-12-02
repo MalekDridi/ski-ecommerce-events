@@ -56,6 +56,12 @@ public class User implements Serializable {
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	private List<Contract> contract;
 	
+	@OneToMany(mappedBy = "user")
+	private List<Feedback> feedback;
+	
+	@OneToMany(mappedBy = "user")
+	private List<Report> report;
+	
 	private static final long serialVersionUID = 1L;
 
 
