@@ -38,6 +38,7 @@ public class User implements Serializable {
 	private String avatar;
 	@OneToMany(mappedBy = "user")
 	private List<Equipment> equipments;
+	
 	@OneToMany(mappedBy = "idTrasmitter")
 	private List<Trade> tradesT;
 	@OneToMany(mappedBy = "idReceiver")
@@ -61,6 +62,9 @@ public class User implements Serializable {
 	
 	@OneToMany(mappedBy = "user")
 	private List<Report> report;
+	
+	@OneToMany(mappedBy = "user")
+	private List<Transport> transports;
 	
 	private static final long serialVersionUID = 1L;
 
