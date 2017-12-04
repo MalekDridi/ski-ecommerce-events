@@ -37,34 +37,33 @@ public class User implements Serializable {
 	private int cin;
 	private String password;
 	private String avatar;
-	
+
 	@ManyToMany(mappedBy = "users")
 	private List<Event> events;
-	
-	
-	@OneToMany(mappedBy="user")
-	private List<Event>evens;
-	
+
+	@OneToMany(mappedBy = "user")
+	private List<Event> evens;
+
+	@OneToMany(mappedBy = "user")
+	private List<SkiTrip> skiTrips;
+
 	@OneToMany
 	private List<Company> companies;
-	
-	@ManyToOne	
+
+	@ManyToOne
 	private Transport transport;
-	
+
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	private List<Contract> contract;
-	
 
 	@OneToMany(mappedBy = "user")
 	private List<Feedback> feedback;
 	
-	
-	
+	@OneToMany(mappedBy="user")
+	private List<UserExperience> userExperiences;
 
 	private static final long serialVersionUID = 1L;
 
-
-	
 	public User() {
 		super();
 	}
@@ -198,6 +197,20 @@ public class User implements Serializable {
 		this.avatar = avatar;
 	}
 
+	public List<SkiTrip> getSkiTrips() {
+		return skiTrips;
+	}
 
+	public void setSkiTrips(List<SkiTrip> skiTrips) {
+		this.skiTrips = skiTrips;
+	}
+
+	public List<UserExperience> getUserExperiences() {
+		return userExperiences;
+	}
+
+	public void setUserExperiences(List<UserExperience> userExperiences) {
+		this.userExperiences = userExperiences;
+	}
 
 }

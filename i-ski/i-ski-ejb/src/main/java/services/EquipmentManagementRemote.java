@@ -3,10 +3,12 @@ package services;
 import java.util.List;
 
 import javax.ejb.Remote;
+import javax.jws.WebService;
 
 import persistence.Equipment;
 
 @Remote
+@WebService
 public interface EquipmentManagementRemote {
 
 	void addEquipment(Equipment equipment);

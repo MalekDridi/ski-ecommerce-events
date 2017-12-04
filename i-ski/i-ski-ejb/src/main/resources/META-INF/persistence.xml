@@ -14,9 +14,13 @@
 		<class>persistence.FeedbackPk</class>
 		<class>persistence.OrganizerRequest</class>
 		<class>persistence.Products</class>
+		<class>persistence.SkiTrip</class>
+		<class>persistence.Station</class>
 		<class>persistence.Trade</class>
 		<class>persistence.Transport</class>
 		<class>persistence.User</class>
+		<class>persistence.UserExperience</class>
+		<class>persistence.UserExperienceId</class>
 		<class>persistence.Winner</class>
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="update" />
