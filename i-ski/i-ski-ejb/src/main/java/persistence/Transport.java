@@ -12,7 +12,7 @@ public class Transport implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idRT;
+	private int id;
 	private Date dateIn;
 	private Date dateOut;
 	private String fromP;
@@ -23,11 +23,12 @@ public class Transport implements Serializable {
 	@OneToMany (mappedBy="transport")
 	private List<User> users;
 	
-	public int getIdRT() {
-		return idRT;
+	
+	public int getId() {
+		return id;
 	}
-	public void setIdRT(int idRT) {
-		this.idRT = idRT;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public Date getDateIn() {
 		return dateIn;
