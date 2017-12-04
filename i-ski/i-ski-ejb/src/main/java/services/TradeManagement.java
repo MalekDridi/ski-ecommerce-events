@@ -18,7 +18,7 @@ import persistence.User;
  */
 @Stateless
 @WebService(name="TradeServicePortType",portName="TradeService",serviceName="TradeService",
-targetNamespace="http://iski.tn",endpointInterface="Service.TradeManagementRemote")
+targetNamespace="http://iski.tn",endpointInterface="services.TradeManagementRemote")
 public class TradeManagement implements TradeManagementRemote, TradeManagementLocal {
 
 	@PersistenceContext

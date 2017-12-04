@@ -33,15 +33,11 @@ public class Equipment implements Serializable {
 	public Equipment() {
 		super();
 	}
-	
-	
 
 	public Equipment(int idEquipment) {
 		super();
 		this.idEquipment = idEquipment;
 	}
-
-
 
 	public Equipment(String name, float price, String description, String image, User user) {
 		super();

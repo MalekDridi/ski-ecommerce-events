@@ -1,0 +1,23 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/WEB-INF/template/template.xhtml">
+
+		<ui:define name="title">Tell Us More about your experience with us </ui:define>
+		<ui:define name="top">iSki.com: Let the joureny begin </ui:define>
+		<ui:define name="content">
+			<h1>Welcome to Iski.com!</h1>
+
+Enter your name, and then choose Search. <br></br>
+			<h:form>
+				<h:outputText>7ajti b input </h:outputText>
+				<h:inputText></h:inputText>
+				<h:commandButton value="select"></h:commandButton>
+			</h:form>
+			<h:link value="contact us" outcome="contactUs" />
+
+		</ui:define>
+	</ui:composition>

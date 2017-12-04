@@ -16,7 +16,7 @@ import persistence.Equipment;
  * Session Bean implementation class EquipmentManagement
  */
 @Stateless
-@WebService(name = "EquipmentServicePortType", portName = "EquipmentService", serviceName = "EquipmentService", targetNamespace = "http://iski.tn", endpointInterface = "Service.EquipmentManagementRemote")
+@WebService(name = "EquipmentServicePortType", portName = "EquipmentService", serviceName = "EquipmentService", targetNamespace = "http://iski.tn", endpointInterface = "services.EquipmentManagementRemote")
 public class EquipmentManagement implements EquipmentManagementRemote, EquipmentManagementLocal {
 
 	@PersistenceContext
