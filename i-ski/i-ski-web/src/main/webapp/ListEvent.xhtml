@@ -7,8 +7,8 @@
 <ui:composition template="/WEB-INF/template/template.xhtml">
 	<ui:define name="title">My trades </ui:define>
 		<h:form>
-			<h:dataTable value="#{myTradesBean.MyTrades}" var="t" border="2"
-				rendered="#{not MyTrades}">
+			<h:dataTable value="#{eventBean.myEvents}" var="t" border="2"
+				>
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="room number" />
