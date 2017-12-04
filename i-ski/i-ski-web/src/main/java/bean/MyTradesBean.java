@@ -33,6 +33,10 @@ public class MyTradesBean {
 	}
 	
 
+	public void doSelect() {
+		showMyTradesList = true;
+	}
+
 	public void doAddFeedback() {
 		Feedback feedback = new Feedback();
 		feedbackReportManagementLocal.addFeedback(feedback);
