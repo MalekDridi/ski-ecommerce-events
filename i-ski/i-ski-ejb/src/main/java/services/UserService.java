@@ -81,5 +81,20 @@ public class UserService implements UserServiceRemote, UserServiceLocal {
 		return null;
 
 	}
+	
+	@Override
+	public User login(String login, String password) {
+		User user = null;
+		String jpql = "SELECT u FROM User u WHERE u.email=:email AND u.password=:password";
+		Query query = entityManager.createQuery(jpql);
+		query.setParameter("email", login);
+		query.setParameter("password", password);
+		try {
+			user = (User) query.getSingleResult();
+		} catch (Exception e) {
+			System.err.println(e);
+		}
+		return user;
+	}	
 
 }
