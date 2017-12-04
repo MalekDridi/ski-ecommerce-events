@@ -17,6 +17,7 @@ public class UserExperience implements Serializable {
 	@EmbeddedId
 	private UserExperienceId experienceId;
 	private String description;
+	private int rate;
 
 	@ManyToOne
 	@JoinColumn(name = "idUser", referencedColumnName = "idUser", insertable = false, updatable = false)
@@ -31,11 +32,12 @@ public class UserExperience implements Serializable {
 		super();
 	}
 
-	public UserExperience(String description, User user, SkiTrip skiTrip) {
+	public UserExperience(int rate, String description, User user, SkiTrip skiTrip) {
 		super();
 		this.description = description;
 		this.user = user;
 		this.skiTrip = skiTrip;
+		this.rate = rate;
 		this.experienceId = new UserExperienceId(user.getIdUser(), skiTrip.getId());
 	}
 
@@ -69,6 +71,14 @@ public class UserExperience implements Serializable {
 
 	public void setSkiTrip(SkiTrip skiTrip) {
 		this.skiTrip = skiTrip;
+	}
+
+	public int getRate() {
+		return rate;
+	}
+
+	public void setRate(int rate) {
+		this.rate = rate;
 	}
 
 }
