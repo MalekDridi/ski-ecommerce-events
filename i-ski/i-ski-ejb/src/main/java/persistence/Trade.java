@@ -2,12 +2,16 @@ package persistence;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -28,12 +32,11 @@ public class Trade implements Serializable {
 	@ManyToOne
 	private User idReceiver;
 	private String state;
-	@OneToOne
+	@ManyToOne
 	private Equipment equipment;
 	@ManyToOne
 	private Feedback feedback;
-	@ManyToOne
-	private Report report;
+	
 	private static final long serialVersionUID = 1L;
 
 	public Trade() {
@@ -139,29 +142,5 @@ public class Trade implements Serializable {
 		this.message = message;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((idTrasmitter == null) ? 0 : idTrasmitter.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Trade other = (Trade) obj;
-		if (idTrasmitter == null) {
-			if (other.idTrasmitter != null)
-				return false;
-		} else if (!idTrasmitter.equals(other.idTrasmitter))
-			return false;
-		return true;
-	}
-
+	
 }

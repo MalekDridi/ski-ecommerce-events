@@ -3,7 +3,7 @@
 	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="i-ski-ejb">
-		<jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
+		<jta-data-source>java:jboss/datasources/ExampleDS2</jta-data-source>
 		<class>persistence.Accomodation</class>
 		<class>persistence.Company</class>
 		<class>persistence.Contract</class>
@@ -14,7 +14,7 @@
 		<class>persistence.User</class>
 		<class>persistence.Winner</class>
 		<properties>
-			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
 			<property name="hibernate.show_sql" value="true" />
 		</properties>
 	</persistence-unit>
