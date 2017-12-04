@@ -18,7 +18,7 @@ import bean.Identity;
 /**
  * Servlet Filter implementation class LoginFilter
  */
-@WebFilter("/pages/*")
+@WebFilter("/*")
 public class LoginFilter implements Filter {
 
 	/**
