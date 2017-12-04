@@ -10,7 +10,6 @@ import persistence.Event;
 import persistence.User;
 
 @Remote
-@WebService
 public interface EventManagementRemote {
 	void addEvent(Event event);
 
