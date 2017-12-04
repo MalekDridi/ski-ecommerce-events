@@ -17,10 +17,7 @@ import persistence.User;
  * Session Bean implementation class EventManagement
  */
 @Stateless
-@WebService(name = "EventPortype",
-portName = "EventPort",
-serviceName = "EventService",
-targetNamespace = "http://ws.Event.tn/")
+
 public class EventManagement implements EventManagementRemote, EventManagementLocal {
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -32,7 +29,7 @@ public class EventManagement implements EventManagementRemote, EventManagementLo
 	}
 
 	@Override
-	@WebMethod(operationName="addEventOperation")
+	
 	public void addEvent(Event event) {
 		entityManager.persist(event);
 
