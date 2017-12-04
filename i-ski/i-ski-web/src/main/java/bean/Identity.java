@@ -22,7 +22,7 @@ public class Identity {
 		if (userLoggedIn != null) {
 			user = userLoggedIn;
 			loggedIn = true;
-			navigateTo = "/success?faces-redirect=true";
+			navigateTo = "/Feedback/ListTrades?faces-redirect=true";
 			
 
 		} else {
