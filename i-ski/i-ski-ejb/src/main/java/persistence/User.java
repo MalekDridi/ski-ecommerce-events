@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 //import javax.persistence.OneToMany;
 
@@ -36,12 +37,6 @@ public class User implements Serializable {
 	private int cin;
 	private String password;
 	private String avatar;
-	@OneToMany(mappedBy = "user")
-	private List<Equipment> equipments;
-	@OneToMany(mappedBy = "idTrasmitter")
-	private List<Trade> tradesT;
-	@OneToMany(mappedBy = "idReceiver")
-	private List<Trade> tradesR;
 	
 	@ManyToMany(mappedBy = "users")
 	private List<Event> events;
@@ -53,15 +48,19 @@ public class User implements Serializable {
 	@OneToMany
 	private List<Company> companies;
 	
+	@ManyToOne	
+	private Transport transport;
+	
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	private List<Contract> contract;
 	
+
 	@OneToMany(mappedBy = "user")
 	private List<Feedback> feedback;
 	
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-	private List<Report> report;
 	
+	
+
 	private static final long serialVersionUID = 1L;
 
 

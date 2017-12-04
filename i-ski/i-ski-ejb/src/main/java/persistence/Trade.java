@@ -36,8 +36,7 @@ public class Trade implements Serializable {
 	private Equipment equipment;
 	@ManyToOne
 	private Feedback feedback;
-	@ManyToOne
-	private Report report;
+	
 	private static final long serialVersionUID = 1L;
 
 	public Trade() {
