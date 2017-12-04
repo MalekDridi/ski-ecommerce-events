@@ -3,8 +3,6 @@ package services;
 import java.util.List;
 
 import javax.ejb.Stateless;
-import javax.jws.WebMethod;
-import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,6 +14,7 @@ import persistence.Equipment;
  * Session Bean implementation class EquipmentManagement
  */
 @Stateless
+@WebService(name = "EquipmentServicePortType", portName = "EquipmentService", serviceName = "EquipmentService", targetNamespace = "http://iski.tn", endpointInterface = "services.EquipmentManagementRemote")
 public class EquipmentManagement implements EquipmentManagementRemote, EquipmentManagementLocal {
 
 	@PersistenceContext

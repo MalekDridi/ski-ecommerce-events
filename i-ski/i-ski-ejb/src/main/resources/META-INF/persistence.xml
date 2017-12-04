@@ -8,9 +8,14 @@
 		<class>persistence.Company</class>
 		<class>persistence.Contract</class>
 		<class>persistence.ContractPk</class>
+		<class>persistence.Equipment</class>
 		<class>persistence.Event</class>
+		<class>persistence.Feedback</class>
+		<class>persistence.FeedbackPk</class>
 		<class>persistence.OrganizerRequest</class>
 		<class>persistence.Products</class>
+		<class>persistence.Trade</class>
+		<class>persistence.Transport</class>
 		<class>persistence.User</class>
 		<class>persistence.Winner</class>
 		<properties>
