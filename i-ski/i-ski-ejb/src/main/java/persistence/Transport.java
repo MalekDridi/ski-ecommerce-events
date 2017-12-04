@@ -2,13 +2,14 @@ package persistence;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
+@Entity
 public class Transport implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idRT;
@@ -18,8 +19,9 @@ public class Transport implements Serializable {
 	private String toP;
 	private String moyenTransport;
 	private int nombrePlaces;
-	@ManyToOne
-	private User user;
+	
+	@OneToMany (mappedBy="transport")
+	private List<User> users;
 	
 	public int getIdRT() {
 		return idRT;
@@ -63,23 +65,19 @@ public class Transport implements Serializable {
 	public void setNombrePlaces(int nombrePlaces) {
 		this.nombrePlaces = nombrePlaces;
 	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-	public Transport(int idRT, Date dateIn, Date dateOut, String fromP, String toP, String moyenTransport,
-			int nombrePlaces, User user) {
+	
+
+	public Transport() {
 		super();
-		this.idRT = idRT;
-		this.dateIn = dateIn;
-		this.dateOut = dateOut;
-		this.fromP = fromP;
-		this.toP = toP;
-		this.moyenTransport = moyenTransport;
-		this.nombrePlaces = nombrePlaces;
-		this.user = user;
+	}
+	public List<User> getUsers() {
+		return users;
+	}
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	
 	
