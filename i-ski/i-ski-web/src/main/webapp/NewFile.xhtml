@@ -1,14 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
-
-<ui:composition template="/WEB-INF/template/template.xhtml">
-	<ui:define name="title">My trades </ui:define>
-		<h:form>
-			<h:dataTable value="#{myTradesBean.myTrades}" var="t" border="2"
-				rendered="#{not showMyTradesList}">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:form>
+	<h:dataTable value="#{myTradesBean.myTrades}" var="t" border="2">
+	#{identity.user.name}
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="Message" />
@@ -25,7 +22,7 @@
 					<f:facet name="header">
 						<h:outputText value="#" />
 					</f:facet>
-					<h:commandButton action="#{}" value="select">
+					<h:commandButton  value="select">
 							
 					</h:commandButton>
 				</h:column>
@@ -36,5 +33,4 @@
 
 
 		</h:form>
-</ui:composition>
 </html>
