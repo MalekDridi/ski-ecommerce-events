@@ -15,34 +15,22 @@ import javax.persistence.*;
 
 public class Feedback implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idFeedback;
-	private Date dateFeedback;
+	@EmbeddedId
+	private FeedbackPk feedbackPk;
 	private String description;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "idUser", referencedColumnName = "idUser", insertable = false, updatable = false)
 	private User user;
-	@OneToMany(mappedBy = "feedback")
-	private List<Trade> trades;
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "idTrade", referencedColumnName = "idTrade", insertable = false, updatable = false)
+	private Trade trade;
 	private static final long serialVersionUID = 1L;
 
 	public Feedback() {
 		super();
 	}   
-	public int getIdFeedback() {
-		return this.idFeedback;
-	}
-
-	public void setIdFeedback(int idFeedback) {
-		this.idFeedback = idFeedback;
-	}   
-	public Date getDateFeedback() {
-		return this.dateFeedback;
-	}
-
-	public void setDateFeedback(Date dateFeedback) {
-		this.dateFeedback = dateFeedback;
-	}   
+	
+	
 	public String getDescription() {
 		return this.description;
 	}
@@ -56,11 +44,21 @@ public class Feedback implements Serializable {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public List<Trade> getTrades() {
-		return trades;
+
+	public FeedbackPk getFeedbackPk() {
+		return feedbackPk;
 	}
-	public void setTrades(List<Trade> trades) {
-		this.trades = trades;
+
+	public void setFeedbackPk(FeedbackPk feedbackPk) {
+		this.feedbackPk = feedbackPk;
+	}
+
+	public Trade getTrade() {
+		return trade;
+	}
+
+	public void setTrade(Trade trade) {
+		this.trade = trade;
 	}
 	
    

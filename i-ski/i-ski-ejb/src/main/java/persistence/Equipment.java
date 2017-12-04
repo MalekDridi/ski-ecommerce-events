@@ -1,12 +1,14 @@
 package persistence;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -26,10 +28,10 @@ public class Equipment implements Serializable {
 	private String image;
 	@ManyToOne
 	private User user;
-	@OneToOne
-	private Trade trade;
+	@OneToMany(mappedBy = "equipment")
+	private List<Trade> trades;
 	private static final long serialVersionUID = 1L;
-
+	
 	public Equipment() {
 		super();
 	}
@@ -100,13 +102,7 @@ public class Equipment implements Serializable {
 		this.user = user;
 	}
 
-	public Trade getTrade() {
-		return trade;
-	}
-
-	public void setTrade(Trade trade) {
-		this.trade = trade;
-	}
+	
 
 	public Equipment(String name, float price, String description, String image) {
 		super();
@@ -114,6 +110,18 @@ public class Equipment implements Serializable {
 		this.price = price;
 		this.description = description;
 		this.image = image;
+	}
+
+
+
+	public List<Trade> getTrades() {
+		return trades;
+	}
+
+
+
+	public void setTrades(List<Trade> trades) {
+		this.trades = trades;
 	}
 
 }

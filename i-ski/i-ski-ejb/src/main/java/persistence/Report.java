@@ -15,35 +15,22 @@ import javax.persistence.*;
 
 public class Report implements Serializable {
 
-	   
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idReport;
-	private Date dateReport;
+	@EmbeddedId
+	private ReportPk reportPk;
 	private String reason;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "idUser", referencedColumnName = "idUser", insertable = false, updatable = false)
 	private User user;
-	@OneToMany(mappedBy = "report")
-	private List<Trade> trades;
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "idTrade", referencedColumnName = "idTrade", insertable = false, updatable = false)
+	private Trade trade;
 	private static final long serialVersionUID = 1L;
 
 	public Report() {
 		super();
 	}   
-	public int getIdReport() {
-		return this.idReport;
-	}
-
-	public void setIdReport(int idReport) {
-		this.idReport = idReport;
-	}   
-	public Date getDateReport() {
-		return this.dateReport;
-	}
-
-	public void setDateReport(Date dateReport) {
-		this.dateReport = dateReport;
-	}   
+	
+	 
 	public String getReason() {
 		return this.reason;
 	}
@@ -51,5 +38,30 @@ public class Report implements Serializable {
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
+
+	public ReportPk getReportPk() {
+		return reportPk;
+	}
+
+	public void setReportPk(ReportPk reportPk) {
+		this.reportPk = reportPk;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Trade getTrade() {
+		return trade;
+	}
+
+	public void setTrade(Trade trade) {
+		this.trade = trade;
+	}
+	
    
 }
