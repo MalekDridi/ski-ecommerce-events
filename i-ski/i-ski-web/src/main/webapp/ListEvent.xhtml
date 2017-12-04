@@ -5,31 +5,20 @@
 	xmlns:h="http://java.sun.com/jsf/html">
 
 <ui:composition template="/WEB-INF/template/template.xhtml">
-	<ui:define name="title">My trades </ui:define>
+	<ui:define name="title">My Events </ui:define>
 		<h:form>
-			<h:dataTable value="#{eventBean.myEvents}" var="t" border="2"
-				>
+			<h:dataTable value="#{eventBean.myEvents}" var="t" border="2">
+				
 				<h:column>
 					<f:facet name="header">
-						<h:outputText value="room number" />
+						<h:outputText value="name" />
 					</f:facet>
-					<h:outputText value="#{r.number}" />
+					<h:outputText value="#{t.name}" />
 				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="room color" />
-					</f:facet>
-					<h:outputText value="#{r.color}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="#" />
-					</f:facet>
-					<h:commandButton action="#{bookingBean.doSelect()}" value="select">
-						<f:setPropertyActionListener value="#{r}"
-							target="#{bookingBean.roomSelected}"></f:setPropertyActionListener>
-					</h:commandButton>
-				</h:column>
+				
+					
+			
+				
 			</h:dataTable>
 
 
