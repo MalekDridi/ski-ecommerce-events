@@ -80,7 +80,7 @@ public class TradeManagement implements TradeManagementRemote, TradeManagementLo
 
 	@Override
 	public List<Trade> findAllMyTrades(User user) {
-		String jpql = "FROM Trade WHERE idTrasmitter =:param1";
+		String jpql = "SELECT t FROM Trade t WHERE t.idTrasmitter =:param1";
 		Query query = entityManager.createQuery(jpql);
 		query.setParameter("param1", user);
 		return query.getResultList();
@@ -88,8 +88,9 @@ public class TradeManagement implements TradeManagementRemote, TradeManagementLo
 
 	@Override
 	public List<Trade> findAllMyRequests() {
-		// TODO Auto-generated method stub
-		return null;
+		String jpql = "SELECT t FROM Trade t";
+		javax.persistence.Query query = entityManager.createQuery(jpql);
+		return query.getResultList();		
 	}
 
 	@Override

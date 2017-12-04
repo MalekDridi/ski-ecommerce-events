@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 //import javax.persistence.OneToMany;
 import javax.persistence.OneToMany;
 
@@ -27,11 +28,13 @@ public class Accomodation implements Serializable {
 	private int capacity;
 	private String description;
 	private String accomodationType;
+
+	@ManyToMany
+	private List<SkiTrip> skiTrips;
+
+	@OneToMany(mappedBy = "accomodation")
+	private List<Event> evens;
 	private static final long serialVersionUID = 1L;
-	
-	@OneToMany(mappedBy="accomodation")
-	private List<Event>evens;
-	
 
 	public Accomodation() {
 		super();
