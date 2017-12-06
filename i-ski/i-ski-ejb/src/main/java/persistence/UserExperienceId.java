@@ -16,7 +16,6 @@ public class UserExperienceId implements Serializable {
 	private Date dateOfStory;
 
 	public UserExperienceId() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public UserExperienceId(int idUser, int idSkiTrip) {
@@ -79,6 +78,11 @@ public class UserExperienceId implements Serializable {
 
 	public void setDateOfStory(Date dateOfStory) {
 		this.dateOfStory = dateOfStory;
+	}
+
+	@Override
+	public String toString() {
+		return "UserExperienceId [idUser=" + idUser + ", idSkiTrip=" + idSkiTrip + ", dateOfStory=" + dateOfStory + "]";
 	}
 
 }

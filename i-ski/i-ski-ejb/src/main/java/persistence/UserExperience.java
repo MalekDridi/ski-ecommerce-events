@@ -18,6 +18,8 @@ public class UserExperience implements Serializable {
 	private UserExperienceId experienceId;
 	private String description;
 	private int rate;
+	private int nbLike;
+	private int nbDisLike;
 
 	@ManyToOne
 	@JoinColumn(name = "idUser", referencedColumnName = "idUser", insertable = false, updatable = false)
@@ -79,6 +81,22 @@ public class UserExperience implements Serializable {
 
 	public void setRate(int rate) {
 		this.rate = rate;
+	}
+
+	public int getNbLike() {
+		return nbLike;
+	}
+
+	public void setNbLike(int nbLike) {
+		this.nbLike = nbLike;
+	}
+
+	public int getNbDisLike() {
+		return nbDisLike;
+	}
+
+	public void setNbDisLike(int nbDisLike) {
+		this.nbDisLike = nbDisLike;
 	}
 
 }

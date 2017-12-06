@@ -6,7 +6,7 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	template="/WEB-INF/template/template.xhtml">
 
-	<ui:define name="title">patients man</ui:define>
+	<ui:define name="title">experience view</ui:define>
 	<ui:define name="content">
 		<h:form>
 			<h:dataTable value="#{userExprience.skiTrips}" var="p" border="2"
@@ -21,19 +21,25 @@
 					<f:facet name="header">
 						<h:outputText value="#" />
 					</f:facet>
-					<h:commandButton action="#{userBean.doShowExerienceForm()}"
+					<h:commandButton action="#{userExprience.doShowExerienceForm()}"
 						value="select">
 						<f:setPropertyActionListener value="#{p}"
 							target="#{userExprience.skiTripSelected}"></f:setPropertyActionListener>
 					</h:commandButton>
 				</h:column>
-				<h:commandButton action="#{userBean.doShowNewPatient()}" value="NEW" />
+				<h:commandButton action="#{userExprience.doShowExerienceForm}"
+					value="NEW" />
 			</h:dataTable>
-			<h:panelGrid columns="2"
+			<h:panelGrid columns="2" border="2"
 				rendered="#{userExprience.showExerienceForm}">
-				<h:outputText value="name" />
+				<h:outputText value="name : " />
 				<h:outputText value="#{userExprience.skiTripSelected.name}" />
-
+				<h:outputText value="description : " />
+				<h:inputText value="#{userExprience.description}" />
+				<h:outputText value="rate : " />
+				<h:inputText value="#{userExprience.rate}" />
+				<h:commandButton action="#{userExprience.doShareExpeience()}"
+					value="share" />
 			</h:panelGrid>
 		</h:form>
 
