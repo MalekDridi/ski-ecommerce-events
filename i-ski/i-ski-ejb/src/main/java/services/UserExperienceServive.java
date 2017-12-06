@@ -1,19 +1,24 @@
 package services;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import persistence.ReviewUserExperience;
 import persistence.SkiTrip;
 import persistence.User;
 import persistence.UserExperience;
 import persistence.UserExperienceId;
+import utilities.GenericDAO;
 
 /**
  * Session Bean implementation class UserExperienceServive
  */
 @Stateless
-public class UserExperienceServive implements UserExperienceServiveRemote, UserExperienceServiveLocal {
+public class UserExperienceServive extends GenericDAO<UserExperience>
+		implements UserExperienceServiveRemote, UserExperienceServiveLocal {
 	@PersistenceContext
 	private EntityManager entityManager;
 
@@ -21,7 +26,7 @@ public class UserExperienceServive implements UserExperienceServiveRemote, UserE
 	 * Default constructor.
 	 */
 	public UserExperienceServive() {
-		// TODO Auto-generated constructor stub
+		super(UserExperience.class);
 	}
 
 	@Override
@@ -37,4 +42,25 @@ public class UserExperienceServive implements UserExperienceServiveRemote, UserE
 		return entityManager.find(UserExperience.class, experienceId);
 	}
 
+	@Override
+	public List<UserExperience> findUserExperiencesByUser(User user) {
+		return entityManager.createQuery("select e from UserExperience e where e.user=:param")
+				.setParameter("param", user).getResultList();
+	}
+
+	@Override
+	public void reviewUserExperience(UserExperience userExperience, ReviewUserExperience reviewUserExperience) {
+		if (reviewUserExperience.equals(ReviewUserExperience.LIKE)) {
+			int old = userExperience.getNbLike();
+			old += 1;
+			userExperience.setNbLike(old);
+			entityManager.merge(userExperience);
+
+		} else if (reviewUserExperience.equals(ReviewUserExperience.DISLIKE)) {
+			int old = userExperience.getNbDisLike();
+			old += 1;
+			userExperience.setNbDisLike(old);
+			entityManager.merge(userExperience);
+		}
+	}
 }
