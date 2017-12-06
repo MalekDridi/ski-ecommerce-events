@@ -29,7 +29,13 @@ public class Station implements Serializable {
 
 	public Station() {
 		super();
-	}   
+	} 
+	
+	public Station(String name) {
+		super();
+		this.name = name;
+	}
+
 	public int getId() {
 		return this.id;
 	}

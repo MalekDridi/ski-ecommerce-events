@@ -1,19 +1,11 @@
 package services;
 
-import java.util.List;
-
 import javax.ejb.Remote;
-import javax.jws.WebMethod;
-import javax.jws.WebResult;
-import javax.jws.WebService;
+
+import persistence.Accomodation;
+import utilities.IGenericDAO;
 
 @Remote
+public interface AccomodationServiceRemote extends IGenericDAO<Accomodation>{
 
-@WebService
-public interface AccomodationServiceRemote {
-
-	@WebMethod(operationName = "findAllAccomodation")
-	@WebResult(name = "list")
-
-	List<persistence.Accomodation> findAllAccomodation();
 }

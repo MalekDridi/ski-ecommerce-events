@@ -1,10 +1,11 @@
 package services;
 
-import java.util.List;
-
 import javax.ejb.Local;
 
+import persistence.Accomodation;
+import utilities.IGenericDAO;
+
 @Local
-public interface AccomodationServiceLocal {
-	List<persistence.Accomodation> findAllAccomodation();
+public interface AccomodationServiceLocal extends IGenericDAO<Accomodation> {
+
 }

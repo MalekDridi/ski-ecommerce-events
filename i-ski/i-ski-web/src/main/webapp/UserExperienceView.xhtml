@@ -9,51 +9,32 @@
 	<ui:define name="title">patients man</ui:define>
 	<ui:define name="content">
 		<h:form>
-			<h:panelGroup rendered="#{not userBean.showPatientsList}">
-				<h:dataTable value="#{userBean.patients}" var="p" border="2">
-					<h:column>
-						<f:facet name="header">
-							<h:outputText value="name" />
-						</f:facet>
-						<h:outputText value="#{p.name}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">
-							<h:outputText value="#" />
-						</f:facet>
-						<h:commandButton action="#{userBean.doShowPatientsList()}"
-							value="select">
-							<f:setPropertyActionListener value="#{p}"
-								target="#{userBean.patient}"></f:setPropertyActionListener>
-						</h:commandButton>
-					</h:column>
-					<h:commandButton action="#{userBean.doShowNewPatient()}"
-						value="NEW" />
-				</h:dataTable>
-			</h:panelGroup>
-			<h:commandButton action="#{userBean.doShowPatientsList()}"
-				value="NEW" rendered="#{not userBean.showPatientsList}" />
-			<h:panelGrid border="2" columns="2"
-				rendered="#{userBean.showPatientsList}">
+			<h:dataTable value="#{userExprience.skiTrips}" var="p" border="2"
+				rendered="#{not userExprience.showExerienceForm}">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="name" />
+					</f:facet>
+					<h:outputText value="#{p.name}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#" />
+					</f:facet>
+					<h:commandButton action="#{userBean.doShowExerienceForm()}"
+						value="select">
+						<f:setPropertyActionListener value="#{p}"
+							target="#{userExprience.skiTripSelected}"></f:setPropertyActionListener>
+					</h:commandButton>
+				</h:column>
+				<h:commandButton action="#{userBean.doShowNewPatient()}" value="NEW" />
+			</h:dataTable>
+			<h:panelGrid columns="2"
+				rendered="#{userExprience.showExerienceForm}">
 				<h:outputText value="name" />
-				<h:inputText value="#{userBean.patient.name}" />
-				<h:outputText value="num CNAM" />
-				<h:inputText value="#{userBean.patient.numCnam}" />
-				<h:outputText value="available rooms" />
-				<h:selectOneMenu value="#{userBean.roomSelected}" converter="rc">
-					<f:selectItem itemLabel="please select" />
-					<f:selectItems value="#{userBean.emptyRooms}" var="r"
-						itemLabel="#{r.codeRoom}" itemValue="#{r}" />
-				</h:selectOneMenu>
-				<h:commandButton action="#{userBean.doSaveOrUpdatePatient()}"
-					value="SaveOrUpdate" />
-				<h:commandButton action="#{userBean.doDeletePatient()}"
-					value="Delete" />
-				<h:commandButton action="#{userBean.doCancel()}" value="Cancel" />
-				<h:commandButton action="#{userBean.doAssignPatientToRoom()}"
-					value="assign to room" />
-			</h:panelGrid>
+				<h:outputText value="#{userExprience.skiTripSelected.name}" />
 
+			</h:panelGrid>
 		</h:form>
 
 
