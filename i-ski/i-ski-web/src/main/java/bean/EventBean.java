@@ -17,6 +17,9 @@ public class EventBean {
 	private Identity identity;
 	@EJB
 	EventManagementLocal eventManagementLocal;
+	
+	
+	
 	public void doShowMyEvents() {
 		MyEvents = eventManagementLocal.findAllEvents();}
 	
