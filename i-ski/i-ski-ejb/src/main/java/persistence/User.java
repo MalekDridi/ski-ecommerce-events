@@ -68,6 +68,11 @@ public class User implements Serializable {
 		super();
 	}
 
+	public User(String lastName) {
+		super();
+		this.lastName = lastName;
+	}
+
 	public int getIdUser() {
 		return idUser;
 	}
