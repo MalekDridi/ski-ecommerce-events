@@ -30,7 +30,7 @@ public class CompanyBean {
 		companies = serviceInsurance.findAllCompanies();
 		}
 	
-	public void doShowCompaniesList (){
+	public void doSelect(){
 		showCompanies= true;
 	}
 
@@ -58,8 +58,25 @@ public class CompanyBean {
 		this.showCompanies = showCompanies;
 	}
 	
+	public void doCancel() {
+		showCompanies = false;
+	}
 	
+	public void doSaveOrUpdate() {
+		serviceInsurance.updateCompany(com);
+		showCompanies = false;
+		init();
+	}
+
+	public void doDelete() {
+		serviceInsurance.deleteCompanyById(com.getIdCompany());;
+		showCompanies = false;
+		init();
+	}
 	
-	
+	public void doShowNew() {
+		com = new Company();
+		showCompanies = true;
+	}
 
 }
