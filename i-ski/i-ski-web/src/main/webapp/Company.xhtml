@@ -9,19 +9,33 @@
 	<ui:define name="title">experience view</ui:define>
 	<ui:define name="content">
 		<h:form>
-			<h:dataTable value="#{companyBean.companies}" var="p" border="2"
-				>
+			<h:dataTable value="#{companyBean.companies}" var="p" border="2">
+				
 				<h:column>
 					<f:facet name="header">
-						<h:outputText value="name" />
+						<h:outputText value="reference" />
 					</f:facet>
 					<h:outputText value="#{p.idCompany}" />
 				</h:column>
+			
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Company Name" />
+					</f:facet>
+					<h:outputText value="#{p.companyName}" />
+				</h:column>
+		
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Offre Type" />
+					</f:facet>
+					<h:outputText value="#{p.offreType}" />
+				</h:column>
+				
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="#" />
 					</f:facet>
-				
 				</h:column>
 				
 			</h:dataTable>

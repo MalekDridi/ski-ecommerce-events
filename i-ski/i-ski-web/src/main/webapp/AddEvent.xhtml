@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head></h:head> 
+<body> 
+
+<ui:define name="title">Add new event </ui:define>
+<h:form>
+
+
+
+<h:outputText value="Name :" />
+<h:inputText value="#{eventBean.selectedEvent.name}" />
+<br></br>
+
+<h:outputText value="State :" />
+<h:inputText value="#{eventBean.selectedEvent.state}" />
+<br></br>
+
+
+
+<p:outputLabel  value="Course Type" />
+   			<p:selectOneListbox id="destination" value="#{eventBean.selectedEvent.location}">
+           			 	<f:selectItem itemLabel="Grand Tunis" itemValue="GrandTunis" />
+            			<f:selectItem itemLabel="Sousse" itemValue="Sousse" />
+           		 		<f:selectItem itemLabel="Gabes" itemValue="Gabes" />
+           			 	<f:selectItem itemLabel="Sfax" itemValue="Sfax" />
+    		</p:selectOneListbox>
+
+
+
+
+<h:outputText value="Station :" />
+<h:inputText value="#{eventBean.selectedEvent.station}" />
+<br></br>
+<h:outputText value="piste :" />
+<h:inputText value="#{eventBean.selectedEvent.piste}" />
+<br></br>
+
+<h:outputText value="capacity :" />
+<h:inputText value="#{eventBean.selectedEvent.capacity}" />
+<br></br>
+
+
+<h:outputText value="Start date :" />
+<h:inputText value="#{eventBean.selectedEvent.startDate}" >
+<f:convertDateTime pattern="yyyy-MM-dd" />
+</h:inputText>
+<br></br>
+
+<h:outputText value="End date :" />
+<h:inputText value="#{eventBean.selectedEvent.endDate}" >
+<f:convertDateTime pattern="yyyy-MM-dd" />
+</h:inputText>
+<br></br>
+
+<h:outputText value="description :" />
+<h:inputText value="#{eventBean.selectedEvent.descriptionEvent}" />
+<br></br>
+
+<h:outputText value="Price :" />
+<h:inputText value="#{eventBean.selectedEvent.priceEvent}" />
+<br></br>
+
+
+<h:commandButton action="#{eventBean.doAddEvent()}" value="add"  />
+		</h:form>
+
+</body> 
+</html>
