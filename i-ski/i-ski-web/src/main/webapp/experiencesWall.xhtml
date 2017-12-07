@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/template.xhtml">
+
+	<ui:define name="title"></ui:define>
+	<ui:define name="content">
+		<h:form id="form">
+			<h3>DataModel</h3>
+			<p:accordionPanel value="#{userExprience.userExpriences}" var="c">
+				<p:tab title="Experience - #{c.experienceId}">
+					<h:panelGrid columns="2" cellpadding="5">
+						<f:facet name="header">
+							<p:graphicImage name="img/logo.png" />
+							<h:outputText value="like nb:" />
+							<h:outputText value="#{c.nbLike}" />
+							<h:outputText value="dislike nb:" />
+							<h:outputText value="#{c.nbDisLike}" />
+						</f:facet>
+						<h:outputText value="Desc:" style="font-weight: bold" />
+						<h:outputText value="#{c.description}" />
+
+						<h:outputText value="Rate:" style="font-weight: bold" />
+						<h:outputText value="#{c.rate}" />
+
+
+					</h:panelGrid>
+					<p:commandButton value="Like" update="@form"
+						action="#{userExprience.doReview('LIKE')}"
+						icon="ui-icon-circle-arrow-n">
+						<f:setPropertyActionListener value="#{c}"
+							target="#{userExprience.userExperienceSelected}"></f:setPropertyActionListener>
+					</p:commandButton>
+					<p:commandButton value="DisLike" update="@form"
+						action="#{userExprience.doReview('DISLIKE')}"
+						icon="ui-icon-circle-arrow-s">
+						<f:setPropertyActionListener value="#{c}"
+							target="#{userExprience.userExperienceSelected}"></f:setPropertyActionListener>
+					</p:commandButton>
+				</p:tab>
+			</p:accordionPanel>
+		</h:form>
+
+
+	</ui:define>
+
+
+</ui:composition>

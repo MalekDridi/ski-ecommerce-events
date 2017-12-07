@@ -1,21 +1,15 @@
 package services;
-import java.util.List;
 
 import javax.ejb.Local;
 
 import persistence.User;
-
-
+import utilities.IGenericDAO;
 
 @Local
-public interface UserServiceLocal {
-	
-	public User add(User u);
-	public User update(User u);
-	public Boolean remove(Integer id);
-	public List<User> findAll();
-	public User findById(Integer id);
+public interface UserServiceLocal extends IGenericDAO<User> {
+
 	public User findByEmail(String l);
+
 	User login(String login, String password);
 
 }

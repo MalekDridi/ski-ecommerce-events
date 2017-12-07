@@ -3,6 +3,7 @@ package persistence;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,9 +25,9 @@ public class SkiTrip implements Serializable {
 	private int id;
 	private String name;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private User user;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private Station station;
 
 	@ManyToMany(mappedBy = "skiTrips")
@@ -38,6 +39,11 @@ public class SkiTrip implements Serializable {
 
 	public SkiTrip() {
 		super();
+	}
+
+	public SkiTrip(String name) {
+		super();
+		this.name = name;
 	}
 
 	public int getId() {
