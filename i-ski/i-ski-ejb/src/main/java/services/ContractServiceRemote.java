@@ -22,7 +22,7 @@ public interface ContractServiceRemote {
 	void SigneContract(java.util.Date dd1, java.util.Date dd2, int a, String st, int iduser, int idCompany);
 	void SigneContract(java.util.Date sdate, java.util.Date edate, int montant, String des, User u, Company com);
 
-
+	void updateC(Contract com);
 	List<Contract> findContractNonAvailble();
 	List<Contract> findContractAvailble();
 	

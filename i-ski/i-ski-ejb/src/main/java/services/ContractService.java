@@ -101,6 +101,11 @@ public class ContractService implements ContractServiceRemote, ContractServiceLo
 
 	}
 
+	@Override
+	public void updateC(Contract com) {
+		entityManager.merge(com);
+		
+	}
 	/*
 	 * public void assingContracttouser(List<Contract> com, User u) {
 	 * 

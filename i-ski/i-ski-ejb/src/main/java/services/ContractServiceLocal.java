@@ -30,6 +30,8 @@ public interface ContractServiceLocal {
 
 	List<Contract> findContractAvailble();
 
+	void updateC(Contract com);
+
 
 
 
