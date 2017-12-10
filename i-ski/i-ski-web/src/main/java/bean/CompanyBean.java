@@ -14,7 +14,6 @@ import persistence.Company;
 import services.CompaniesServiceLocal;
 
 @ManagedBean
-@SessionScoped
 @ViewScoped
 public class CompanyBean {
 	
