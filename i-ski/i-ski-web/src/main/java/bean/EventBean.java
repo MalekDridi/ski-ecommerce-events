@@ -29,6 +29,13 @@ public class EventBean {
 	@EJB
 	EventManagementLocal eventManagementLocal;
 
+	
+	
+	
+	public void doShowMyEvents() {
+		MyEvents = eventManagementLocal.findAllEvents();}
+
+
 
 	@PostConstruct
 	public void doShowAllEvents() {
@@ -52,6 +59,7 @@ public class EventBean {
 	public void doSelect() {
 		showMyEventsList = true;
 	}
+
 
 	
 public void doAddEvent(){
