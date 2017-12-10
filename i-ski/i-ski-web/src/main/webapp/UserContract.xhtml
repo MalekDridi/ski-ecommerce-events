@@ -1,0 +1,72 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/WEB-INF/template/template.xhtml">
+
+	<ui:define name="title">Insurance Contract</ui:define>
+	<ui:define name="content">
+
+	<br />
+		<h:form>
+			<h:dataTable value="#{contractBean.companies}" var="r" border="2"
+				rendered="#{not contractBean.showDetails}">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Company Name" />
+					</f:facet>
+					<h:outputText value="#{r.companyName}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Offre" />
+					</f:facet>
+					<h:outputText value="#{r.offreType}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#" />
+					</f:facet>
+					<h:commandButton action="#{contractBean.doSelect()}" value="choose">
+						<f:setPropertyActionListener value="#{r}"
+							target="#{contractBean.cSelected}"></f:setPropertyActionListener>
+					</h:commandButton>
+				</h:column>
+			</h:dataTable>
+
+			<h:panelGrid columns="2" rendered="#{contractBean.showDetails}"
+				border="2">
+				<h:outputText value="Company name " />
+				<h:outputText value="#{contractBean.cSelected.companyName}" />
+				
+				<h:outputText value="Offre Type" />
+				<h:outputText value="#{contractBean.cSelected.offreType}" />
+				
+				
+				
+			
+				
+				<h:outputText value="Note" />
+				<h:inputText value="#{contractBean.des}" />
+				
+				<h:outputText value="start date" />
+				<h:inputText value="#{contractBean.sdate}">
+					<f:convertDateTime pattern="yyyy-MM-dd" />
+				</h:inputText>
+				
+				<h:outputText value="end date" />
+				<h:inputText value="#{contractBean.edate}">
+					<f:convertDateTime pattern="yyyy-MM-dd" />
+				</h:inputText>
+				
+				<h:commandButton action="#{contractBean.doCancel}" value="cancel" />
+				<h:commandButton action="#{contractBean.doSigneContract}"
+					value="Signe Contract" />
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+
+
+</ui:composition>
