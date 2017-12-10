@@ -41,15 +41,15 @@ public class Utilities {
 
 	@PostConstruct
 	private void init() {
-		User user = new User("insaf");
+		/*User user = new User("insaf");
 		user.setEmail("i");
-		user.setPassword("i");
+		user.setPassword("i");*/
 
 		Station station = new Station("grenoble");
 
 		SkiTrip skiTrip = new SkiTrip("re7la");
 		skiTrip.setStation(station);
-		skiTrip.setUser(userServiceLocal.update(user));
+		//skiTrip.setUser(userServiceLocal.update(user));
 
 		Accomodation accomodation = new Accomodation("skiresort", 120F, 15, "hotel");
 		Accomodation accomodation2 = new Accomodation("confort", 90F, 10, "house");
@@ -63,6 +63,7 @@ public class Utilities {
 		accomodation3.setSkiTrips(skiTrips);
 
 		//userServiceLocal.update(user);
+
 
 		accomodationServiceLocal.update(accomodation);
 		accomodationServiceLocal.update(accomodation2);

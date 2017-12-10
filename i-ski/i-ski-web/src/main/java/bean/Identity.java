@@ -22,8 +22,8 @@ public class Identity {
 		if (userLoggedIn != null) {
 			user = userLoggedIn;
 			loggedIn = true;
-			 navigateTo = "/Feedback/ListTrades?faces-redirect=true";
-			//navigateTo = "/NewFile?faces-redirect=true";
+			 //navigateTo = "/Feedback/ListTrades?faces-redirect=true";
+			navigateTo = "/NewFile?faces-redirect=true";
 
 		} else {
 			navigateTo = "/horror?faces-redirect=true";
