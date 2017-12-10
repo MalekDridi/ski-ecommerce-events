@@ -14,11 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.Identity;
 
-
 /**
  * Servlet Filter implementation class LoginFilter
  */
-//@WebFilter("/")
+@WebFilter("/pages/*")
 public class LoginFilter implements Filter {
 
 	/**
