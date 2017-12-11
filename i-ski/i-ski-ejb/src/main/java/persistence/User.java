@@ -38,6 +38,12 @@ public class User implements Serializable {
 	private String password;
 	private String avatar;
 
+	@ManyToMany(mappedBy = "likerUsers")
+	private List<UserExperience> experiencesLiked;
+
+	@ManyToMany(mappedBy = "disLikerUsers")
+	private List<UserExperience> experiencesDisLiked;
+
 	@ManyToMany(mappedBy = "users")
 	private List<Event> events;
 
@@ -58,8 +64,8 @@ public class User implements Serializable {
 
 	@OneToMany(mappedBy = "user")
 	private List<Feedback> feedback;
-	
-	@OneToMany(mappedBy="user")
+
+	@OneToMany(mappedBy = "user")
 	private List<UserExperience> userExperiences;
 
 	private static final long serialVersionUID = 1L;
@@ -216,6 +222,22 @@ public class User implements Serializable {
 
 	public void setUserExperiences(List<UserExperience> userExperiences) {
 		this.userExperiences = userExperiences;
+	}
+
+	public List<UserExperience> getExperiencesLiked() {
+		return experiencesLiked;
+	}
+
+	public void setExperiencesLiked(List<UserExperience> experiencesLiked) {
+		this.experiencesLiked = experiencesLiked;
+	}
+
+	public List<UserExperience> getExperiencesDisLiked() {
+		return experiencesDisLiked;
+	}
+
+	public void setExperiencesDisLiked(List<UserExperience> experiencesDisLiked) {
+		this.experiencesDisLiked = experiencesDisLiked;
 	}
 
 }

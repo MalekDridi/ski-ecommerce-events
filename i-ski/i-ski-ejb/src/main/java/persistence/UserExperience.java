@@ -1,10 +1,13 @@
 package persistence;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 /**
@@ -14,12 +17,19 @@ import javax.persistence.ManyToOne;
 @Entity
 
 public class UserExperience implements Serializable {
+
 	@EmbeddedId
 	private UserExperienceId experienceId;
 	private String description;
 	private int rate;
+	private String img;
 	private int nbLike;
 	private int nbDisLike;
+
+	@ManyToMany(fetch=FetchType.EAGER)
+	private List<User> likerUsers;
+	@ManyToMany(fetch=FetchType.EAGER)
+	private List<User> disLikerUsers;
 
 	@ManyToOne
 	@JoinColumn(name = "idUser", referencedColumnName = "idUser", insertable = false, updatable = false)
@@ -32,6 +42,16 @@ public class UserExperience implements Serializable {
 
 	public UserExperience() {
 		super();
+	}
+
+	public UserExperience(int rate, String description, User user, SkiTrip skiTrip, String img) {
+		super();
+		this.description = description;
+		this.user = user;
+		this.skiTrip = skiTrip;
+		this.rate = rate;
+		this.experienceId = new UserExperienceId(user.getIdUser(), skiTrip.getId());
+		this.img = img;
 	}
 
 	public UserExperience(int rate, String description, User user, SkiTrip skiTrip) {
@@ -84,7 +104,11 @@ public class UserExperience implements Serializable {
 	}
 
 	public int getNbLike() {
-		return nbLike;
+		
+	return likerUsers.size();
+	
+
+		
 	}
 
 	public void setNbLike(int nbLike) {
@@ -92,11 +116,35 @@ public class UserExperience implements Serializable {
 	}
 
 	public int getNbDisLike() {
-		return nbDisLike;
+		return disLikerUsers.size();
 	}
 
 	public void setNbDisLike(int nbDisLike) {
 		this.nbDisLike = nbDisLike;
+	}
+
+	public List<User> getLikerUsers() {
+		return likerUsers;
+	}
+
+	public void setLikerUsers(List<User> likerUsers) {
+		this.likerUsers = likerUsers;
+	}
+
+	public List<User> getDisLikerUsers() {
+		return disLikerUsers;
+	}
+
+	public void setDisLikerUsers(List<User> disLikerUsers) {
+		this.disLikerUsers = disLikerUsers;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
 	}
 
 }
