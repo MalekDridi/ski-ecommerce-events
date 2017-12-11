@@ -89,12 +89,6 @@ public class UserExprience {
 			FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
 			FacesContext.getCurrentInstance().addMessage(null, message);
 		}
-		// try {
-		// //copyFile(event.getFile().getFileName(),
-		// event.getFile().getInputstream());
-		// } catch (IOException e) {
-		// e.printStackTrace();
-		// }
 
 	}
 

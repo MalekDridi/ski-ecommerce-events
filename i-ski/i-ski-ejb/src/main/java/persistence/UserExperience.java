@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -25,9 +26,9 @@ public class UserExperience implements Serializable {
 	private int nbLike;
 	private int nbDisLike;
 
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	private List<User> likerUsers;
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	private List<User> disLikerUsers;
 
 	@ManyToOne
@@ -103,9 +104,11 @@ public class UserExperience implements Serializable {
 	}
 
 	public int getNbLike() {
+		
+	return likerUsers.size();
+	
 
-		return 0;
-		// likerUsers.size();
+		
 	}
 
 	public void setNbLike(int nbLike) {
@@ -113,8 +116,7 @@ public class UserExperience implements Serializable {
 	}
 
 	public int getNbDisLike() {
-		return 0;
-		// disLikerUsers.size();
+		return disLikerUsers.size();
 	}
 
 	public void setNbDisLike(int nbDisLike) {
