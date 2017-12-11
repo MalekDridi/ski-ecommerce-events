@@ -1,6 +1,7 @@
 package bean;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -10,7 +11,9 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import persistence.Feedback;
+import persistence.FeedbackPk;
 import persistence.Trade;
+import persistence.User;
 import services.FeedbackReportManagementLocal;
 import services.TradeManagementLocal;
 
@@ -20,6 +23,8 @@ public class MyTradesBean {
 	private Trade tradeSelected = new Trade();
 	private List<Trade> MyTrades = new ArrayList<>();
 	private List<Trade> MyTrades2 = new ArrayList<>();
+	private Date dateOfFeedback;
+	private String description;
 
 	private boolean showMyTradesList = false;
 	@ManagedProperty(value = "#{identity}")
@@ -45,9 +50,14 @@ public class MyTradesBean {
 	}
 
 	public void doAddFeedback() {
-		Feedback feedback = new Feedback();
+		
+		//User user = identity.getUser();
+		FeedbackPk feedbackPk = new FeedbackPk(tradeSelected, identity.getUser());
+		dateOfFeedback = new Date();
+		// Feedback feedback = new Feedback(description, dateOfFeedback, user, trade);
+		Feedback feedback = new Feedback(feedbackPk, description, dateOfFeedback, identity.getUser(), tradeSelected);
 		feedbackReportManagementLocal.addFeedback(feedback);
-
+		showMyTradesList = false;
 	}
 
 	public Trade getTradeSelected() {
@@ -96,6 +106,22 @@ public class MyTradesBean {
 
 	public void setMyTrades2(List<Trade> myTrades2) {
 		MyTrades2 = myTrades2;
+	}
+
+	public Date getDateOfFeedback() {
+		return dateOfFeedback;
+	}
+
+	public void setDateOfFeedback(Date dateOfFeedback) {
+		this.dateOfFeedback = dateOfFeedback;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 }

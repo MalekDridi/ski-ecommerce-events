@@ -4,12 +4,10 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 
-<h:head></h:head> 
-<body> 
-hi Mr/Ms : #{identity.user.firstName}
+
 	<ui:define name="title">My events </ui:define>
 		<h:form>
-			<h:dataTable value="#{eventBean.myEvents}" var="t" border="2"
+			<h:dataTable value="#{eventBean.OEvents}" var="t" border="2"
 				>
 				<h:column>
 					<f:facet name="header">
@@ -84,5 +82,5 @@ hi Mr/Ms : #{identity.user.firstName}
 
 
 		</h:form>
-</body>
+
 </html>

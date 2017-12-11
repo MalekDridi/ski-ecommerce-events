@@ -1,0 +1,76 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/WEB-INF/template/template.xhtml">
+
+	<ui:define name="title">Admin Panel Contracts</ui:define>
+	<ui:define name="content">
+		<h:form>
+			<h:dataTable value="#{adminContractBean.contracts}" var="p"
+				border="2">
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Contract Description" />
+					</f:facet>
+					<h:outputText value="#{p.description}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#" />
+					</f:facet>
+					<h:commandButton action="#{adminContractBean.doSelect()}"
+						value="select">
+						<f:setPropertyActionListener value="#{p}"
+							target="#{adminContractBean.cSelected}">
+						</f:setPropertyActionListener>
+					</h:commandButton>
+				</h:column>
+
+
+			</h:dataTable>
+			<h:panelGrid columns="2" rendered="#{adminContractBean.showDetails}"
+				border="2">
+
+				<h:outputText value="description" />
+				<h:outputText value="#{adminContractBean.cSelected.description}" />
+
+				<h:outputText value="etat" />
+				<h:outputText value="#{adminContractBean.cSelected.etat}" />
+
+				<h:outputText value="Start Day" />
+				<h:outputText value="#{adminContractBean.cSelected.startDate}" />
+
+				<h:outputText value="End Day" />
+				<h:outputText value="#{adminContractBean.cSelected.endDate}" />
+
+				<h:outputText value="Ammount" />
+				<h:outputText value="#{adminContractBean.cSelected.montant}" />
+
+
+
+
+
+			</h:panelGrid>
+
+			<h:panelGrid columns="2" rendered="#{adminContractBean.showAmount}"
+				border="2">
+
+				<h:outputText value="Ammount" />
+				<h:inputText value="#{adminContractBean.cSelected.montant}" />
+
+
+				<h:commandButton action="#{adminContractBean.doSaveOrUpdate()}"
+					value="SaveOrUpdate" />				
+			</h:panelGrid>
+		</h:form>
+
+
+	</ui:define>
+
+
+</ui:composition>
