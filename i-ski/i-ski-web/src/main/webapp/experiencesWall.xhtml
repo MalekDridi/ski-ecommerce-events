@@ -10,12 +10,14 @@
 	<ui:define name="title"></ui:define>
 	<ui:define name="content">
 		<h:form id="form">
+
 			<h3>DataModel</h3>
 			<p:accordionPanel value="#{userExprience.userExpriences}" var="c">
 				<p:tab title="Experience - #{c.experienceId}">
 					<h:panelGrid columns="2" cellpadding="5">
 						<f:facet name="header">
-							<p:graphicImage name="img/logo.png" />
+							<p:graphicImage
+								value="http://localhost:18080/iski/images/#{c.img}" />
 							<h:outputText value="like nb:" />
 							<h:outputText value="#{c.nbLike}" />
 							<h:outputText value="dislike nb:" />
@@ -30,14 +32,22 @@
 
 					</h:panelGrid>
 					<p:commandButton value="Like" update="@form"
+						disabled="#{userExprience.likeRender}"
 						action="#{userExprience.doReview('LIKE')}"
 						icon="ui-icon-circle-arrow-n">
 						<f:setPropertyActionListener value="#{c}"
 							target="#{userExprience.userExperienceSelected}"></f:setPropertyActionListener>
 					</p:commandButton>
 					<p:commandButton value="DisLike" update="@form"
+						disabled="#{userExprience.disLikeRender}"
 						action="#{userExprience.doReview('DISLIKE')}"
 						icon="ui-icon-circle-arrow-s">
+						<f:setPropertyActionListener value="#{c}"
+							target="#{userExprience.userExperienceSelected}"></f:setPropertyActionListener>
+					</p:commandButton>
+					<p:commandButton value="Remove"
+						action="#{userExprience.doRemoveExperience()}"
+						icon="ui-icon-trash" update="@form">
 						<f:setPropertyActionListener value="#{c}"
 							target="#{userExprience.userExperienceSelected}"></f:setPropertyActionListener>
 					</p:commandButton>

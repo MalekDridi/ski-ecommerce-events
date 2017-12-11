@@ -9,7 +9,7 @@ import persistence.UserExperienceId;
 
 @Remote
 public interface UserExperienceServiveRemote {
-	void saveUserExperience(User user, SkiTrip skiTrip, String description, int rate);
+	void saveUserExperience(User user, SkiTrip skiTrip, String description, int rate,String img);
 
 	UserExperience findUserExperienceById(UserExperienceId experienceId);
 }

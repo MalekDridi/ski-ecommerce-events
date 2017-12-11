@@ -30,8 +30,8 @@ public class UserExperienceServive extends GenericDAO<UserExperience>
 	}
 
 	@Override
-	public void saveUserExperience(User user, SkiTrip skiTrip, String description, int rate) {
-		UserExperience userExperience = new UserExperience(rate, description, user, skiTrip);
+	public void saveUserExperience(User user, SkiTrip skiTrip, String description, int rate,String img) {
+		UserExperience userExperience = new UserExperience(rate, description, user, skiTrip,img);
 
 		entityManager.merge(userExperience);
 
@@ -49,18 +49,38 @@ public class UserExperienceServive extends GenericDAO<UserExperience>
 	}
 
 	@Override
-	public void reviewUserExperience(UserExperience userExperience, ReviewUserExperience reviewUserExperience) {
+	public void reviewUserExperience(User user, UserExperience userExperience,
+			ReviewUserExperience reviewUserExperience) {
 		if (reviewUserExperience.equals(ReviewUserExperience.LIKE)) {
-			int old = userExperience.getNbLike();
-			old += 1;
-			userExperience.setNbLike(old);
-			entityManager.merge(userExperience);
+			if (!userExperience.getLikerUsers().contains(user)) {
+				int old = userExperience.getNbLike();
+				old += 1;
+				userExperience.setNbLike(old);
+				entityManager.merge(userExperience);
+
+			} else {
+				System.out.println("already send review");
+			}
 
 		} else if (reviewUserExperience.equals(ReviewUserExperience.DISLIKE)) {
-			int old = userExperience.getNbDisLike();
-			old += 1;
-			userExperience.setNbDisLike(old);
-			entityManager.merge(userExperience);
+			if (!userExperience.getDisLikerUsers().contains(user)) {
+
+				int old = userExperience.getNbDisLike();
+				old += 1;
+				userExperience.setNbDisLike(old);
+				entityManager.merge(userExperience);
+			} else {
+				System.out.println("already send review");
+			}
 		}
 	}
+
+//	public void addUserToUsersReviewed(User user, UserExperience userExperience,
+//			ReviewUserExperience reviewUserExperience) {
+//		if (reviewUserExperience.equals(ReviewUserExperience.LIKE)) {
+//			List<User> users = entityManager
+//					.createQuery("select u from User u where :p member of u.experiencesLiked   ")
+//					.setParameter("p", userExperience).getResultList();
+//		}
+//	}
 }

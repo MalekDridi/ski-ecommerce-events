@@ -13,11 +13,11 @@ import utilities.IGenericDAO;
 
 @Local
 public interface UserExperienceServiveLocal extends IGenericDAO<UserExperience> {
-	void saveUserExperience(User user, SkiTrip skiTrip, String description, int rate);
+	void saveUserExperience(User user, SkiTrip skiTrip, String description, int rate,String img);
 
 	UserExperience findUserExperienceById(UserExperienceId experienceId);
 
 	List<UserExperience> findUserExperiencesByUser(User user);
 
-	void reviewUserExperience(UserExperience userExperience, ReviewUserExperience reviewUserExperience);
+	void reviewUserExperience(User user,UserExperience userExperience, ReviewUserExperience reviewUserExperience);
 }
