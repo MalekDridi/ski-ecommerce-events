@@ -47,21 +47,13 @@
 
 				<h:outputText value="End Day" />
 				<h:outputText value="#{adminContractBean.cSelected.endDate}" />
-
-				<h:outputText value="Ammount" />
-				<h:outputText value="#{adminContractBean.cSelected.montant}" />
-
-
-
-
-
 			</h:panelGrid>
 
 			<h:panelGrid columns="2" rendered="#{adminContractBean.showAmount}"
 				border="2">
 
 				<h:outputText value="Ammount" />
-				<h:inputText value="#{adminContractBean.cSelected.montant}" />
+				<h:inputText value="#{adminContractBean.montant}" />
 
 
 				<h:commandButton action="#{adminContractBean.doSaveOrUpdate()}"

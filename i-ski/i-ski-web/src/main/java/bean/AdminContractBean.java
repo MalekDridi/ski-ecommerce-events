@@ -20,7 +20,7 @@ public class AdminContractBean {
 	
 	private Date sdate;
 	private Date edate;
-	private int montant=0;
+	private int montant;
 	private String etat;
 	private String des;
 	private boolean showDetails = false;
@@ -44,7 +44,7 @@ public class AdminContractBean {
 		cSelected.setMontant(montant);
 		serviceContract.updateC(cSelected);
 		showDetails = false;
-		init();
+	
 	}
 	
 	public boolean isShow() {
