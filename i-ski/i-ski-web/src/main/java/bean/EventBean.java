@@ -10,7 +10,6 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import persistence.Event;
-import persistence.EventReservation;
 import services.EventManagementLocal;
 import services.EventReservationLocal;
 
@@ -23,7 +22,7 @@ public class EventBean {
 	private List<Event> MyCanceledEvents = new ArrayList<>();
 	private List<Event> MyPastEvents = new ArrayList<>();
 	private List<Event> OPastEvents = new ArrayList<>();
-	
+
 	private List<Event> OAvailablesEvents = new ArrayList<>();
 
 	private List<Event> oEvents = new ArrayList<>();
@@ -37,8 +36,13 @@ public class EventBean {
 
 	@EJB
 	EventManagementLocal eventManagementLocal;
-@EJB
-EventReservationLocal rsl;
+	@EJB
+	EventReservationLocal rsl;
+
+	public void doShowMyEvents() {
+		MyEvents = eventManagementLocal.findAllEvents();
+	}
+
 	@PostConstruct
 	public void doShowAllEvents() {
 		MyEvents = eventManagementLocal.findAllEvents();
@@ -51,13 +55,13 @@ EventReservationLocal rsl;
 		setoEvents(eventManagementLocal.findAllEvents2(identity.getUser()));
 		selectedEvent.setUser(identity.getUser());
 	}
-	 public boolean checkReservation(Event e) {
-		 if(rsl.checkReservation(identity.getUser(), e).size()==0)
-			 return true;
-		 return false;
-		 
-	 }
-	
+
+	public boolean checkReservation(Event e) {
+		if (rsl.checkReservation(identity.getUser(), e).size() == 0)
+			return true;
+		return false;
+
+	}
 
 	public void doShowOEvents() {
 		setoEvents(eventManagementLocal.findAllEvents2(identity.getUser()));
@@ -80,23 +84,20 @@ EventReservationLocal rsl;
 
 	}
 
-	
-	public String doCancelEvent(Event t ){
-		
-	
+	public String doCancelEvent(Event t) {
+
 		t.setState("Canceled");
 		eventManagementLocal.updateEvent(t);
 		return "/ListEventA?faces-redirect=true";
 	}
-	
-	public String doCancelEventO(Event t ){
-		
-		
+
+	public String doCancelEventO(Event t) {
+
 		t.setState("Canceled");
 		eventManagementLocal.updateEvent(t);
 		return "/ListEventO?faces-redirect=true";
 	}
-	
+
 	public static Event getEvent() {
 		return event;
 	}
@@ -170,45 +171,59 @@ EventReservationLocal rsl;
 	public void setoEvents(List<Event> oEvents) {
 		this.oEvents = oEvents;
 	}
+
 	public List<Event> getMyAvailableEvents() {
 		return MyAvailableEvents;
 	}
+
 	public void setMyAvailableEvents(List<Event> myAvailableEvents) {
 		MyAvailableEvents = myAvailableEvents;
 	}
+
 	public static Event getEvent1() {
 		return event1;
 	}
+
 	public static void setEvent1(Event event1) {
 		EventBean.event1 = event1;
 	}
+
 	public EventReservationLocal getRsl() {
 		return rsl;
 	}
+
 	public void setRsl(EventReservationLocal rsl) {
 		this.rsl = rsl;
 	}
+
 	public List<Event> getMyCanceledEvents() {
 		return MyCanceledEvents;
 	}
+
 	public void setMyCanceledEvents(List<Event> myCanceledEvents) {
 		MyCanceledEvents = myCanceledEvents;
 	}
+
 	public List<Event> getMyPastEvents() {
 		return MyPastEvents;
 	}
+
 	public void setMyPastEvents(List<Event> myPastEvents) {
 		MyPastEvents = myPastEvents;
 	}
+
 	public List<Event> getOPastEvents() {
 		return OPastEvents;
 	}
+
 	public void setOPastEvents(List<Event> oPastEvents) {
 		OPastEvents = oPastEvents;
 	}
+
 	public List<Event> getOAvailablesEvents() {
 		return OAvailablesEvents;
 	}
+
 	public void setOAvailablesEvents(List<Event> oAvailablesEvents) {
 		OAvailablesEvents = oAvailablesEvents;
 	}

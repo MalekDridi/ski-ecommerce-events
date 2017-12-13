@@ -1,6 +1,6 @@
 package services;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -13,36 +13,34 @@ import persistence.Company;
 import persistence.Contract;
 import persistence.User;
 
-
 /**
  * Session Bean implementation class ContractService
  */
 @Stateless
 public class ContractService implements ContractServiceRemote, ContractServiceLocal {
-	
+
 	@PersistenceContext
 	private EntityManager entityManager;
-    /**
-     * Default constructor. 
-     */
-	
+	/**
+	 * Default constructor.
+	 */
+
 	@EJB
 	private UserServiceRemote basicOpsLocal;
-	
+
 	@EJB
 	private ContractServiceLocal contractServiceLocal;
-    public ContractService() {
-        // TODO Auto-generated constructor stub
-    }
 
+	public ContractService() {
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public void deleteContract(Contract C) {
-		
-		entityManager.remove(C);
-		
-	}
 
+		entityManager.remove(C);
+
+	}
 
 	@Override
 	public List<Contract> findAllContracts() {
@@ -51,70 +49,73 @@ public class ContractService implements ContractServiceRemote, ContractServiceLo
 		return query.getResultList();
 	}
 
+	/*
+	 * @Override public List<Contract> findContractsbyCompanybyID(int idcom) {
+	 * String jpql = "SELECT z FROM Contract z WHERE z.company.id=:param"; Query
+	 * query = entityManager.createQuery(jpql); query.setParameter("param",
+	 * idcom); return query.getResultList(); }
+	 * 
+	 */
 
-	@Override
-	public void SigneContract(Date sdate, Date edate, int montant, String des, int iduser, int idCompany) {
+	public void SigneContract(java.util.Date sdate, java.util.Date edate, int montant, String des, int iduser,
+			int idCompany, String etat) {
 
-    Contract contract = new Contract(sdate,edate,montant, des , iduser ,idCompany);
-    entityManager.persist(contract);
+		Contract contract = new Contract(sdate, edate, montant, des, iduser, idCompany, etat);
+		entityManager.persist(contract);
+
 	}
 
-	
-
 	@Override
-	public void SigneContract(Date sdate, Date edate, int montant, String des, User u, Company com) {
-		
-
-		   Contract contract = new Contract(sdate,edate,montant, des , u ,com);
-		    entityManager.persist(contract);		
-	}
-
-	
-
-	@Override
-	public List<Contract> findContractsbyCompanybyID(int idcom) {
+	public List<Contract> findContractsbyCompanybyID(int com) {
 		String jpql = "SELECT z FROM Contract z WHERE z.company.id=:param";
 		Query query = entityManager.createQuery(jpql);
-		query.setParameter("param", idcom);
+		query.setParameter("param", com);
 		return query.getResultList();
 	}
 
+	@Override
+	public List<Contract> findContractNonAvailble() {
+		String jpql = "SELECT z FROM Contract z WHERE z.etat=:param";
+		Query query = entityManager.createQuery(jpql);
+		query.setParameter("param", "nonValid");
+		return query.getResultList();
+	}
 
 	@Override
-	public void SigneContract(java.util.Date sdate, java.util.Date edate, int montant, String des, int iduser,
-			int idCompany) {
+	public List<Contract> findContractAvailble() {
+		String jpql = "SELECT z FROM Contract z WHERE z.etat=:param";
+		Query query = entityManager.createQuery(jpql);
+		query.setParameter("param", "Valid");
+		return query.getResultList();
+	}
 
-	    Contract contract = new Contract(sdate,edate,montant, des , iduser ,idCompany);
-	    entityManager.persist(contract);
+	@Override
+	public void SigneContract(Date sdate, Date edate, int montant, String des, User u, Company com) {
+
+	}
+
+	@Override
+	public void SigneContract(Date dd1, Date dd2, int a, String st, int iduser, int idCompany) {
+		Contract contract = new Contract(dd1, dd2, a, st, iduser, idCompany);
+		entityManager.persist(contract);
+
+	}
+
+	@Override
+	public void updateC(Contract com) {
+		entityManager.merge(com);
 		
 	}
-
-
-	@Override
-	public void SigneContract(java.util.Date sdate, java.util.Date edate, int montant, String des, User u,
-			Company com) {
-		 Contract contract = new Contract(sdate,edate,montant, des , u ,com);
-		    entityManager.persist(contract);		
-	}
-
-
-
-	
-	
-	
 	/*
-	public void assingContracttouser(List<Contract> com, User u) {
+	 * public void assingContracttouser(List<Contract> com, User u) {
+	 * 
+	 * List<Contract> contratcs = contractServiceLocal.findAllContracts();
+	 * 
+	 * for (Contract r : contratcs) { contratcs.add(r); }
+	 * 
+	 * u.setContract(contratcs);
+	 * 
+	 * basicOpsLocal.update(u); }
+	 */
 
-		List<Contract> contratcs = contractServiceLocal.findAllContracts();
-		
-		for (Contract r : contratcs) {
-			contratcs.add(r);
-		}	
-		
-		u.setContract(contratcs);
-
-		basicOpsLocal.update(u);
-	}
-	*/
-	
 }

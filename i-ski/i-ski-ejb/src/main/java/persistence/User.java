@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 //import javax.persistence.OneToMany;
@@ -39,6 +40,15 @@ public class User implements Serializable {
 
 	@OneToMany(mappedBy = "user")
 	private List<EventReservation> eventReservation;
+	@ManyToMany(mappedBy = "likerUsers")
+	private List<UserExperience> experiencesLiked;
+
+	@ManyToMany(mappedBy = "disLikerUsers")
+	private List<UserExperience> experiencesDisLiked;
+
+	@ManyToMany(mappedBy = "users")
+	private List<Event> events;
+
 	@OneToMany(mappedBy = "user")
 	private List<Event> evens;
 
@@ -206,6 +216,22 @@ public class User implements Serializable {
 
 	public void setUserExperiences(List<UserExperience> userExperiences) {
 		this.userExperiences = userExperiences;
+	}
+
+	public List<UserExperience> getExperiencesLiked() {
+		return experiencesLiked;
+	}
+
+	public void setExperiencesLiked(List<UserExperience> experiencesLiked) {
+		this.experiencesLiked = experiencesLiked;
+	}
+
+	public List<UserExperience> getExperiencesDisLiked() {
+		return experiencesDisLiked;
+	}
+
+	public void setExperiencesDisLiked(List<UserExperience> experiencesDisLiked) {
+		this.experiencesDisLiked = experiencesDisLiked;
 	}
 
 }

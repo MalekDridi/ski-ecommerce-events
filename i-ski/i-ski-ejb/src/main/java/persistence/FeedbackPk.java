@@ -12,11 +12,10 @@ import javax.persistence.TemporalType;
  *
  */
 @Embeddable
-@SuppressWarnings("serial")
 public class FeedbackPk implements Serializable {
 
-	private int idTrade;
-	private int idUser;
+	private Trade idTrade;
+	private User idUser;
 	@Temporal(TemporalType.DATE)
 	private Date feedbackDate;
 	private static final long serialVersionUID = 1L;
@@ -24,22 +23,9 @@ public class FeedbackPk implements Serializable {
 	public FeedbackPk() {
 		super();
 	}
-
-	public int getIdTrade() {
-		return idTrade;
-	}
-
-	public void setIdTrade(int idTrade) {
-		this.idTrade = idTrade;
-	}
-
-	public int getIdUser() {
-		return idUser;
-	}
-
-	public void setIdUser(int idUser) {
-		this.idUser = idUser;
-	}
+	
+	
+	
 
 	public Date getFeedbackDate() {
 		return feedbackDate;
@@ -49,15 +35,49 @@ public class FeedbackPk implements Serializable {
 		this.feedbackDate = feedbackDate;
 	}
 
+
+
+
+	public Trade getIdTrade() {
+		return idTrade;
+	}
+
+
+
+
+	public void setIdTrade(Trade idTrade) {
+		this.idTrade = idTrade;
+	}
+
+
+
+
+	public User getIdUser() {
+		return idUser;
+	}
+
+
+
+
+	public void setIdUser(User idUser) {
+		this.idUser = idUser;
+	}
+
+
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((feedbackDate == null) ? 0 : feedbackDate.hashCode());
-		result = prime * result + idTrade;
-		result = prime * result + idUser;
+		result = prime * result + ((idTrade == null) ? 0 : idTrade.hashCode());
+		result = prime * result + ((idUser == null) ? 0 : idUser.hashCode());
 		return result;
 	}
+
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -73,11 +93,30 @@ public class FeedbackPk implements Serializable {
 				return false;
 		} else if (!feedbackDate.equals(other.feedbackDate))
 			return false;
-		if (idTrade != other.idTrade)
+		if (idTrade == null) {
+			if (other.idTrade != null)
+				return false;
+		} else if (!idTrade.equals(other.idTrade))
 			return false;
-		if (idUser != other.idUser)
+		if (idUser == null) {
+			if (other.idUser != null)
+				return false;
+		} else if (!idUser.equals(other.idUser))
 			return false;
 		return true;
 	}
 
+
+
+
+	public FeedbackPk(Trade idTrade, User idUser) {
+		super();
+		this.idTrade = idTrade;
+		this.idUser = idUser;
+		this.feedbackDate = new Date();
+	}
+	
+	
+	
+	
 }

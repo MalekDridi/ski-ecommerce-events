@@ -26,7 +26,7 @@ public class TestCreateUserExperience {
 
 		User user = userServiceRemote.find(1);
 		SkiTrip skiTrip = skiTripServiceRemote.find(1);
-		experienceServiveRemote.saveUserExperience(user, skiTrip, "mriguela", 10);
+		experienceServiveRemote.saveUserExperience(user, skiTrip, "mriguela", 10, "");
 
 	}
 
