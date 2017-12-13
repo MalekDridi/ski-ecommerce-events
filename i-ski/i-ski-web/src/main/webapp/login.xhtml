@@ -6,20 +6,179 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	template="/WEB-INF/template/template.xhtml">
 
-	<ui:define name="title">login</ui:define>
+	<ui:define name="head">
+
+	</ui:define>
+	
 	<ui:define name="content">
-		<h:form>
+	
+	<div id="main" role="main">
+		<div class="container">
+			<div class="row">
+				<div class="main_content  col-sm-12">
+		<h2 class="page_heading">Login or create an account</h2>
 
-			<h:panelGrid columns="2">
-				<h:outputText value="login" />
-				<h:inputText value="#{identity.user.email}" />
-				<h:outputText value="password" />
-				<h:inputSecret value="#{identity.user.password}" />
-			</h:panelGrid>
+		<div id="account_login">
+			<div class="account_wrapper">
+				<div class="account_left">
+					<div class="account_section">
+						<h4>New here?</h4>
 
-			<h:commandButton action="#{identity.doLogin()}" value="login" />
+						<p class="note">Registration is free and easy!</p>
 
-		</h:form>
+						<ul>
+							<li>Faster checkout</li>
+							<li>Save multiple shipping addresses</li>
+							<li>View and track orders and more</li>
+						</ul>
+
+						<a id="account_register__link" class="btn" href="#">Create an
+							account</a>
+					</div>
+				</div>
+
+				<div class="account_right">
+					<div class="account_section">
+						<h4>Already registered?</h4>
+
+						<h:form>
+
+							<h:panelGrid columns="2">
+								<div class="form-group">
+									<label for="customer_email" class="control-label">Email
+										address</label>
+									<h:inputText value="#{identity.user.email}" />
+								</div>
+								<div class="form-group">
+									<label for="customer_password" class="control-label">Password</label>
+									<h:inputSecret value="#{identity.user.password}" />
+								</div>
+							</h:panelGrid>
+
+							<h:commandButton class="btn" action="#{identity.doLogin()}"
+								value="login" />
+
+						</h:form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div></div></div></div>
+
+<footer>
+                    <div class="footer_content">
+                        <div class="container">
+
+                                <div class="col-sm-3">
+                                    <div class="footer_block footer_block__1">
+                                        <h3>Information</h3>
+
+                                        <ul class="footer_links">
+
+                                            <li class="active"><a href="" title="">Home</a></li>
+
+                                            <li><a href="" title="">Collections</a></li>
+
+                                            <li><a href="" title="">Products</a></li>
+
+                                            <li><a href="search.html" title="">Search</a></li>
+
+                                            <li><a href="pages/about-us.html" title="">About us</a></li>
+
+                                            <li><a href="">User Experience</a></li>
+
+                                            <li><a href="pages/wishlist.html" title="">Wishlist</a></li>
+
+                                            <li><a href="pages/contact-us.html" title="">Contact us</a></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-sm-5 col-md-6 col-lg-5">
+
+                                    <div class="footer_block footer_block__2">
+                                        <h3>Newsletter</h3>
+
+                                        <p>Subscribe today to get our special offers and news delivered right to your inbox.</p>
+
+                                        <div class="footer_newsletter">
+
+                                            <form method="post" action="https://theme270-ski.myshopify.com/contact#contact_form" id="contact_form" class="contact-form" accept-charset="UTF-8">
+                                                <input type="hidden" value="customer" name="form_type" /><input type="hidden" name="utf8" value="✓" />
+                                                <input type="hidden" name="contact[tags]" value="prospect,newsletter" id="newsletter-tags" />
+                                                <input type="hidden" name="contact[first_name]" value="Newsletter" id="newsletter-first-name" />
+                                                <input type="hidden" name="contact[last_name]" value="Subscriber" id="newsletter-last-name" />
+                                                <input type="email" name="contact[email]" id="contact_email_footer" placeholder="Enter your email" />
+                                                <button type="submit" name="subscribe" class="btn">Subscribe</button>
+
+
+                                            </form>
+
+                                            
+                                            <br/>
+                                            <a class="btn btn-danger" onclick="SendEmail()"> Click to send email </a>
+                                           
+                                            
+                                       
+
+                                        </div>
+
+                                        
+                                    </div>
+
+                                    <script>
+                                            var SendEmail = function () {
+
+                                            $.ajax({
+                                            type: "Post",
+                                            url: "/Test/SendMailToUser",
+                                            success: function (data) {
+                                                alert("success");
+
+                                            }
+                                            })
+                                            }
+                                    </script>
+
+
+                                    <div class="footer_block__3">
+                                        <ul class="footer_social">
+                                            <li><a href="http://twitter.com/TemplateMonster"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a href="http://www.facebook.com/TemplateMonster"><i class="fa fa-facebook"></i></a></li>
+                                            <li><a href="http://www.youtube.com/user/TemplateMonsterCo"><i class="fa fa-youtube"></i></a></li>
+
+                                            <li><a href="http://www.pinterest.com/templatemonster/"><i class="fa fa-pinterest"></i></a></li>
+                                            <li><a href="http://google.com/+templatemonster"><i class="fa fa-google-plus"></i></a></li>
+
+                                        </ul>
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class="col-sm-4 col-md-3 col-lg-offset-1 footer_block footer_block__4">
+                                    <h3>Facebook</h3>
+
+                                    <div class="fb-page" data-href="facebook.com/TemplateMonster" data-width="290" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="facebook.com/TemplateMonster"><a href="facebook.com/TemplateMonster.html"></a></blockquote></div></div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    <div class="copyright">
+                        <div class="container">
+                            <p role="contentinfo">© 2017 SEESKI. All rights reserved. Design by <a href="http://templatemonster.com/">TemplateMonster.com</a>. <a target="_blank" rel="nofollow" href="https://www.shopify.com/">Powered by Shopify</a></p><!-- Design by templatemonster.com -->
+                        </div>
+                    </div>
+                </footer>
+
+
+
 	</ui:define>
 
 

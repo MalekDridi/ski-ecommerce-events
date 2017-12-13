@@ -8,10 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 //import javax.persistence.ManyToOne;
 //import javax.persistence.OneToMany;
+import javax.persistence.OneToMany;
 
 /**
  * Entity implementation class for Entity: Event
@@ -33,27 +33,22 @@ public class Event implements Serializable {
 	private float priceEvent;
 	private String descriptionEvent;
 	private String piste;
-	private String state="available";
+	private String state = "available";
 
+	@OneToMany(mappedBy = "event")
+	private List<EventReservation> eventReservation;
 
-	@ManyToMany
-	private List<User> users;
-	
-	
 	@ManyToOne
 	private User user;
-	
-	
+
 	@ManyToOne
 	private Accomodation accomodation;
-
 
 	private static final long serialVersionUID = 1L;
 
 	public Event() {
 		super();
 	}
-
 
 	public int getIdEvent() {
 		return idEvent;
@@ -63,21 +58,17 @@ public class Event implements Serializable {
 		return piste;
 	}
 
-
 	public String getState() {
 		return state;
 	}
-
 
 	public void setState(String state) {
 		this.state = state;
 	}
 
-
 	public void setPiste(String piste) {
 		this.piste = piste;
 	}
-
 
 	public void setIdEvent(int idEvent) {
 		this.idEvent = idEvent;
@@ -139,14 +130,6 @@ public class Event implements Serializable {
 		this.descriptionEvent = descriptionEvent;
 	}
 
-	public List<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(List<User> users) {
-		this.users = users;
-	}
-
 	public User getUser() {
 		return user;
 	}
@@ -155,16 +138,13 @@ public class Event implements Serializable {
 		this.user = user;
 	}
 
-
 	public String getStation() {
 		return Station;
 	}
 
-
 	public void setStation(String station) {
 		Station = station;
 	}
-
 
 	public Accomodation getAccomodation() {
 		return accomodation;
@@ -174,5 +154,4 @@ public class Event implements Serializable {
 		this.accomodation = accomodation;
 	}
 
-	
 }

@@ -11,7 +11,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 //import javax.persistence.OneToMany;
@@ -38,9 +37,8 @@ public class User implements Serializable {
 	private String password;
 	private String avatar;
 
-	@ManyToMany(mappedBy = "users")
-	private List<Event> events;
-
+	@OneToMany(mappedBy = "user")
+	private List<EventReservation> eventReservation;
 	@OneToMany(mappedBy = "user")
 	private List<Event> evens;
 
@@ -58,8 +56,8 @@ public class User implements Serializable {
 
 	@OneToMany(mappedBy = "user")
 	private List<Feedback> feedback;
-	
-	@OneToMany(mappedBy="user")
+
+	@OneToMany(mappedBy = "user")
 	private List<UserExperience> userExperiences;
 
 	private static final long serialVersionUID = 1L;
@@ -143,14 +141,6 @@ public class User implements Serializable {
 
 	public void setCin(int cin) {
 		this.cin = cin;
-	}
-
-	public List<Event> getEvents() {
-		return events;
-	}
-
-	public void setEvents(List<Event> events) {
-		this.events = events;
 	}
 
 	public List<Event> getEvens() {

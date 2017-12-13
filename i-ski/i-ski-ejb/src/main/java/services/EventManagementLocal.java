@@ -12,7 +12,7 @@ import persistence.User;
 public interface EventManagementLocal {
 	void addEvent(Event event);
 
-	void updateEvent(Event event);
+	
 	
 	void updateEventById(int id);
 
@@ -39,6 +39,32 @@ public interface EventManagementLocal {
 	User findUserById(int id);
 
 	List<Event> findAllEvents2(User u);
+
+	void cancelEvent(Event event);
+
+
+
+	void updateEvent(Event event);
+
+
+
+	List<Event> findAvailableEvents();
+
+
+
+	List<Event> findCanceledEvents();
+
+
+
+	List<Event> findPastEvents();
+
+
+
+	List<Event> findOPastEvents(User user);
+
+
+
+	List<Event> findOAvailableEvents(User user);
 
 	
 
