@@ -17,5 +17,6 @@ public interface UserServiceLocal {
 	public User findById(Integer id);
 	public User findByEmail(String l);
 	User login(String login, String password);
+	
 
 }

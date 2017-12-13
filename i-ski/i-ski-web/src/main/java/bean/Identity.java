@@ -22,7 +22,8 @@ public class Identity {
 		if (userLoggedIn != null) {
 			user = userLoggedIn;
 			loggedIn = true;
-			navigateTo = "/success?faces-redirect=true";
+			navigateTo = "/Accueil?faces-redirect=true";
+			
 			
 
 		} else {

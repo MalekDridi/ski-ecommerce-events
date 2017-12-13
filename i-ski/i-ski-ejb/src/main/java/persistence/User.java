@@ -48,8 +48,11 @@ public class User implements Serializable {
 	@OneToMany
 	private List<Company> companies;
 	
-	@ManyToOne	
-	private Transport transport;
+	@OneToMany (mappedBy="user")
+	private List<Transport>  transports;
+	
+	@OneToMany (mappedBy="user")
+	private List<Reservation>  reservations;
 	
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	private List<Contract> contract;
@@ -198,6 +201,30 @@ public class User implements Serializable {
 		this.avatar = avatar;
 	}
 
+	public List<Transport> getTransports() {
+		return transports;
+	}
+
+	public void setTransports(List<Transport> transports) {
+		this.transports = transports;
+	}
+
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
+	}
+
+	public List<Feedback> getFeedback() {
+		return feedback;
+	}
+
+	public void setFeedback(List<Feedback> feedback) {
+		this.feedback = feedback;
+	}
 
 
+	
 }

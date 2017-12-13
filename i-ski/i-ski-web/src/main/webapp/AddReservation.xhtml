@@ -1,0 +1,112 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/WEB-INF/template/template.xhtml"
+                               
+                xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="head">
+
+	</ui:define>
+	<ui:define name="content">
+		<div id="parallax_block" class="parallax_block">
+
+    <div class="rd-parallax-layer" data-speed="0.15" data-type="media"><img src="resources/img/event.jpg"/> </div>
+
+
+    <div class="parallax_block__content">
+        <div class="container">
+            <h2 >Manage transport Request 
+            </h2>
+
+	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+		<h:form>
+			
+						<div id="main" role="main">
+							<div class="container">
+								<div class="row">
+									<div class="main_content  col-sm-12">
+										<div id="account_register" class="account_section">
+										
+											<h3>
+												Manage Transport  
+											</h3>
+
+											<div class="form-horizontal">
+
+<p:outputLabel for="inline" value=" Ｄｅｐａｒｔｕｒｅ　Ｄａｔｅ : "  />
+        <p:calendar id="inline" value="#{rtransportBean.transpReservSelected.dateIn}" mode="inline" />
+<br></br>
+  <p:outputLabel  for="inline1" value="Ｒｅｔｕｒｎ　Ｄａｔｅ : " />
+        <p:calendar id="inline1" value="#{rtransportBean.transpReservSelected.dateOut}" mode="inline" />
+        
+ <div class="clearfix form-group">
+<label for="first_name"
+class="login control-label col-sm-4">Ｆｒｏｍ : </label>
+<div class="col-sm-4">
+<h:inputText class="form-control" value="#{rtransportBean.transpReservSelected.fromP}"/>
+</div>
+</div>
+
+<div class="clearfix form-group">
+<label for="first_name"
+class="login control-label col-sm-4">Ｄｅｓｔｉｎａｔｉｏｎ : </label>
+<div class="col-sm-4">
+<h:inputText class="form-control" value="#{rtransportBean.transpReservSelected.toP}" />
+</div></div>
+
+<div class="clearfix form-group">
+<label for="first_name"
+class="login control-label col-sm-4">Ｍｅａｎ　ｏｆ　ｔｒａｎｓｐｏｒｔ : </label>
+<div class="col-sm-4">
+<h:inputText class="form-control" value="#{rtransportBean.transpReservSelected.moyenTransport}" />
+</div></div>
+
+<div class="clearfix form-group">
+<label for="first_name"
+class="login control-label col-sm-4">Ｃａｐａｃｉｔｙ : </label>
+<div class="col-sm-4">
+<h:inputText class="form-control" value="#{rtransportBean.transpReservSelected.nombrePlaces}" />
+</div></div>
+
+<br></br>
+<br></br>
+
+<h:commandButton action="#{rtransportBean.doUpdateMyTransportReservation()}" value="Update" class="btn" rendered="#{rtransportBean.view_update}"/>
+<h:commandButton action="#{rtransportBean.doAddReservationTransport()}" value="Add" class="btn" rendered="#{!rtransportBean.view_update}"/>
+		
+			
+
+</div></div></div></div></div></div>
+		</h:form>
+		
+
+ <div class="carousel_tabs">
+
+
+
+<a id="tab_3" class="tab_item" href="Accueil.jsf">Home </a>
+
+
+            <a id="tab_1" class="tab_item" href="MyTransportRequests.jsf">My Transport Requests</a>
+            
+             <a id="tab_2" class="tab_item" href="ShowRTransport.jsf">Available Transports </a>
+		</div>
+		
+		 </div>
+
+        <div class="bg_figure">
+            <div class="figure_1"></div>
+
+            <div class="figure_2"></div>
+        </div>
+    </div>
+</div>
+		
+</ui:define>
+
+
+</ui:composition>
