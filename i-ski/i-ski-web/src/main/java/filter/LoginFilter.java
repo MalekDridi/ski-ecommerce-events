@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.Identity;
 
-
 /**
  * Servlet Filter implementation class LoginFilter
  */

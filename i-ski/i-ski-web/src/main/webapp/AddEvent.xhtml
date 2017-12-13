@@ -1,0 +1,198 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/WEB-INF/template/template.xhtml">
+
+	<ui:define name="head">
+
+	</ui:define>
+	<ui:define name="content">
+		<div id="parallax_block" class="parallax_block">
+
+			<div class="rd-parallax-layer" data-speed="0.15" data-type="media">
+				<img src="resources/img/event.jpg" />
+			</div>
+
+
+			<div class="parallax_block__content">
+				<div class="container">
+					<h2>Here Is Available events List</h2>
+
+					<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+					<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+					<br /> <br />
+
+					<h:form>
+
+
+						<div id="main" role="main">
+							<div class="container">
+								<div class="row">
+									<div class="main_content  col-sm-12">
+										<div id="account_register" class="account_section">
+
+											<h4>
+												Create a new Event <span><a
+													class="link_close account_register__cancel" href="#">Close</a></span>
+											</h4>
+
+											<div class="form-horizontal">
+
+
+												<div class="clearfix form-group">
+													<label for="first_name"
+														class="login control-label col-sm-4">Name</label>
+													<div class="col-sm-4">
+														<h:inputText class="form-control"
+															value="#{eventBean.selectedEvent.name}" />
+													</div>
+												</div>
+												<div class="clearfix form-group">
+
+													<label for="first_name"
+														class="login control-label col-sm-4">State</label>
+													<div class="col-sm-4">
+														<h:inputText class="form-control" disabled="true"
+															value="#{eventBean.selectedEvent.state}" />
+													</div>
+												</div>
+												<div class="clearfix form-group">
+
+													<label for="first_name"
+														class="login control-label col-sm-4">Location</label>
+													<div class="col-sm-4">
+														<h:selectOneListbox id="destination"
+															value="#{eventBean.selectedEvent.location}">
+															<f:selectItem itemLabel="Pyrénnées" itemValue="Pyrénnées" />
+															<f:selectItem itemLabel="Auvergne" itemValue="Auvergne" />
+															<f:selectItem itemLabel="Alpes du Nord"
+																itemValue="Alpes du Nord" />
+															<f:selectItem itemLabel="Vosges Jura"
+																itemValue="Vosges Jura" />
+															<f:selectItem itemLabel="Alpes du Sud"
+																itemValue="Alpes du Sud" />
+
+														</h:selectOneListbox>
+													</div>
+												</div>
+												<div class="clearfix form-group">
+
+
+													<label for="first_name"
+														class="login control-label col-sm-4">Station</label>
+													<div class="col-sm-4">
+														<h:inputText class="form-control"
+															value="#{eventBean.selectedEvent.station}" />
+													</div>
+												</div>
+												<div class="clearfix form-group">
+
+													<label for="first_name"
+														class="login control-label col-sm-4">Piste</label>
+													<div class="col-sm-4">
+														<h:selectOneListbox id="piste"
+															value="#{eventBean.selectedEvent.piste}">
+															<f:selectItem itemLabel="Blue" itemValue="Blue" />
+															<f:selectItem itemLabel="Red" itemValue="Red" />
+															<f:selectItem itemLabel="Green" itemValue="Green" />
+														</h:selectOneListbox>
+													</div>
+												</div>
+												<div class="clearfix form-group">
+
+													<label for="first_name"
+														class="login control-label col-sm-4">Capacity</label>
+													<div class="col-sm-4">
+														<h:inputText class="form-control"
+															value="#{eventBean.selectedEvent.capacity}" />
+													</div>
+												</div>
+												<div class="clearfix form-group">
+
+													<label for="first_name"
+														class="login control-label col-sm-4">Start Date</label>
+													<div class="col-sm-4">
+														<h:inputText class="form-control"
+															value="#{eventBean.selectedEvent.startDate}">
+															<f:convertDateTime pattern="yyyy-MM-dd" />
+														</h:inputText>
+														<label for="first_name" style="color: gray;">(yyyy-MM-dd)</label>
+													</div>
+
+												</div>
+												<div class="clearfix form-group">
+
+													<label for="first_name"
+														class="login control-label col-sm-4">End Date</label>
+													<div class="col-sm-4">
+														<h:inputText class="form-control"
+															value="#{eventBean.selectedEvent.endDate}">
+
+															<f:convertDateTime pattern="yyyy-MM-dd" />
+
+														</h:inputText>
+														<label for="first_name" style="color: gray;">(yyyy-MM-dd)</label>
+													</div>
+												</div>
+												
+												<div class="clearfix form-group">
+
+													<label for="first_name"
+														class="login control-label col-sm-4">Description</label>
+													<div class="col-sm-4">
+														<h:inputText class="form-control"
+															value="#{eventBean.selectedEvent.descriptionEvent}" />
+													</div>
+												</div>
+
+												<div class="clearfix form-group">
+
+													<label for="first_name"
+														class="login control-label col-sm-4">Price</label>
+													<div class="col-sm-4">
+														<h:inputText class="form-control"
+															value="#{eventBean.selectedEvent.priceEvent}" />
+
+													</div>
+												</div>
+												<br />
+												<h:commandButton class="btn btn-primary"
+													action="#{eventBean.doAddEvent()}" value="add" />
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</h:form>
+					<div class="carousel_tabs">
+
+
+            <a id="tab_1" class="tab_item" href="AccueilO.jsf">Home</a>
+            <a id="tab_2" class="tab_item" href="OAvailableEvents.jsf">My Available Events</a>
+            <a id="tab_3" class="tab_item" href="OPastEvents.jsf">My Past Events</a>
+            <a id="tab_1" class="tab_item" href="ListEventO.jsf">Available Events</a>
+            
+            
+		</div>
+				</div>
+
+				<div class="bg_figure">
+					<div class="figure_1"></div>
+
+					<div class="figure_2"></div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+	</ui:define>
+
+
+</ui:composition>

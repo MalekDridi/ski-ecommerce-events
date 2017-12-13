@@ -4,10 +4,13 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * Entity implementation class for Entity: Contract
@@ -22,6 +25,8 @@ public class Contract implements Serializable {
 	private Date endDate;
 	private int Montant;
 	private String description;
+    @Column(nullable = false)
+	private String etat ; 
 	private User user;
 	private Company company;
 
@@ -62,6 +67,16 @@ public class Contract implements Serializable {
 
 	}
 
+	public Contract(Date startDate, Date endDate, int montant, String description, int iduser, int idcompany, String etat) {
+		super();
+		this.contractPk = new ContractPk(iduser, idcompany);
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.Montant = montant;
+		this.description = description;
+		this.etat = etat;
+
+	}
 	public void setUser(User user) {
 		this.user = user;
 	}
@@ -117,6 +132,14 @@ public class Contract implements Serializable {
 	public String toString() {
 		return "Contract [contractPk=" + contractPk + ", startDate=" + startDate + ", endDate=" + endDate + ", Montant="
 				+ Montant + ", description=" + description + ", user=" + user + ", company=" + company + "]";
+	}
+
+	public String getEtat() {
+		return etat;
+	}
+
+	public void setEtat(String etat) {
+		this.etat = etat;
 	}
 
 }

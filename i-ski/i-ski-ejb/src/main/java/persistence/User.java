@@ -37,39 +37,54 @@ public class User implements Serializable {
 	private int cin;
 	private String password;
 	private String avatar;
-	
+
+	@OneToMany(mappedBy = "user")
+	private List<EventReservation> eventReservation;
+	@ManyToMany(mappedBy = "likerUsers")
+	private List<UserExperience> experiencesLiked;
+
+	@ManyToMany(mappedBy = "disLikerUsers")
+	private List<UserExperience> experiencesDisLiked;
+
 	@ManyToMany(mappedBy = "users")
 	private List<Event> events;
-	
-	
-	@OneToMany(mappedBy="user")
-	private List<Event>evens;
-	
+
+	@OneToMany(mappedBy = "user")
+	private List<Event> evens;
+
+	@OneToMany(mappedBy = "user")
+	private List<SkiTrip> skiTrips;
+
 	@OneToMany
 	private List<Company> companies;
-	
-	@OneToMany (mappedBy="user")
-	private List<Transport>  transports;
-	
-	@OneToMany (mappedBy="user")
-	private List<Reservation>  reservations;
-	
+
+	@OneToMany(mappedBy = "user")
+	private List<Transport> transports;
+
+	@OneToMany(mappedBy = "user")
+	private List<Reservation> reservations;
+
+	@ManyToOne
+	private Transport transport;
+
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	private List<Contract> contract;
-	
 
 	@OneToMany(mappedBy = "user")
 	private List<Feedback> feedback;
-	
-	
-	
+
+	@OneToMany(mappedBy = "user")
+	private List<UserExperience> userExperiences;
 
 	private static final long serialVersionUID = 1L;
 
-
-	
 	public User() {
 		super();
+	}
+
+	public User(String lastName) {
+		super();
+		this.lastName = lastName;
 	}
 
 	public int getIdUser() {
@@ -142,14 +157,6 @@ public class User implements Serializable {
 
 	public void setCin(int cin) {
 		this.cin = cin;
-	}
-
-	public List<Event> getEvents() {
-		return events;
-	}
-
-	public void setEvents(List<Event> events) {
-		this.events = events;
 	}
 
 	public List<Event> getEvens() {
@@ -225,6 +232,36 @@ public class User implements Serializable {
 		this.feedback = feedback;
 	}
 
+	public List<SkiTrip> getSkiTrips() {
+		return skiTrips;
+	}
 
-	
+	public void setSkiTrips(List<SkiTrip> skiTrips) {
+		this.skiTrips = skiTrips;
+	}
+
+	public List<UserExperience> getUserExperiences() {
+		return userExperiences;
+	}
+
+	public void setUserExperiences(List<UserExperience> userExperiences) {
+		this.userExperiences = userExperiences;
+	}
+
+	public List<UserExperience> getExperiencesLiked() {
+		return experiencesLiked;
+	}
+
+	public void setExperiencesLiked(List<UserExperience> experiencesLiked) {
+		this.experiencesLiked = experiencesLiked;
+	}
+
+	public List<UserExperience> getExperiencesDisLiked() {
+		return experiencesDisLiked;
+	}
+
+	public void setExperiencesDisLiked(List<UserExperience> experiencesDisLiked) {
+		this.experiencesDisLiked = experiencesDisLiked;
+	}
+
 }

@@ -4,10 +4,12 @@ import java.io.Serializable;
 //import java.util.List;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 //import javax.persistence.OneToMany;
 import javax.persistence.OneToMany;
 
@@ -27,14 +29,24 @@ public class Accomodation implements Serializable {
 	private int capacity;
 	private String description;
 	private String accomodationType;
+
+	@ManyToMany(cascade = CascadeType.MERGE)
+	private List<SkiTrip> skiTrips;
+
+	@OneToMany(mappedBy = "accomodation")
+	private List<Event> evens;
 	private static final long serialVersionUID = 1L;
-	
-	@OneToMany(mappedBy="accomodation")
-	private List<Event>evens;
-	
 
 	public Accomodation() {
 		super();
+	}
+
+	public Accomodation(String name, float price, int capacity, String description) {
+		super();
+		this.name = name;
+		this.price = price;
+		this.capacity = capacity;
+		this.description = description;
 	}
 
 	public int getIdAccomodation() {
@@ -91,6 +103,14 @@ public class Accomodation implements Serializable {
 
 	public void setEvens(List<Event> evens) {
 		this.evens = evens;
+	}
+
+	public List<SkiTrip> getSkiTrips() {
+		return skiTrips;
+	}
+
+	public void setSkiTrips(List<SkiTrip> skiTrips) {
+		this.skiTrips = skiTrips;
 	}
 
 }

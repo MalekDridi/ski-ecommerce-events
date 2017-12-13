@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:define name="title">My trades </ui:define>
+	<h:form>
+	#{identity.user.email}
+
+	<h:dataTable value="#{myTradesBean.myTrades}" var="t" border="2"
+			rendered="#{not myTradesBean.showMyTradesList}">
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Message" />
+				</f:facet>
+				<h:outputText value="#{t.message}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Trade Date" />
+				</f:facet>
+				<h:outputText value="#{t.tradeDate}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#" />
+				</f:facet>
+				<h:commandButton action="#{myTradesBean.doSelect()}"
+					value="Add FeedBack">
+
+					<f:setPropertyActionListener value="#{tr}"
+						target="#{myTradesBean.tradeSelected}"></f:setPropertyActionListener>
+
+				</h:commandButton>
+			</h:column>
+		</h:dataTable>
+
+		<h:panelGrid columns="2" rendered="#{myTradesBean.showMyTradesList}"
+			border="2">
+			<h:outputText value="Description"  />
+			<h:inputText value="#{myTradesBean.description}"  />
+			
+			
+						<h:commandButton action="#{myTradesBean.doAddFeedback}"
+				value="Add FeedBack">
+				</h:commandButton>
+		</h:panelGrid>
+		
+
+
+
+
+	</h:form>
+</ui:composition>
+

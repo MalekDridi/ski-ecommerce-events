@@ -1,0 +1,62 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/WEB-INF/template/template.xhtml">
+
+	<ui:define name="title">Companies</ui:define>
+	<ui:define name="content">
+		<h:form>
+			<h:dataTable value="#{companyBean.companies}" var="p" border="2">
+				
+		
+			
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Company Name" />
+					</f:facet>
+					<h:outputText value="#{p.companyName}" />
+				</h:column>
+		
+			
+				
+					<h:column>
+					<f:facet name="header">
+						<h:outputText value="#" />
+					</f:facet>
+					<h:commandButton action="#{companyBean.doSelect()}" value="select">
+						<f:setPropertyActionListener value="#{p}"
+							target="#{companyBean.com}">
+						</f:setPropertyActionListener>
+					</h:commandButton>
+				</h:column>
+				
+				<h:commandButton action="#{companyBean.doShowNew()}"
+						value="NEW" />
+			</h:dataTable>
+			
+					<h:commandButton action="#{companyBean.doShowNew()}"
+				value="NEW" rendered="#{not companyBean.showCompanies}" />
+			
+			
+		<h:panelGrid columns="2" rendered="#{companyBean.showCompanies}"
+				border="2">
+				<h:outputText value="Name" />
+				<h:inputText value="#{companyBean.com.companyName}" />
+				<h:outputText value="Type" />
+				<h:inputText value="#{companyBean.com.offreType}" />
+					<h:commandButton action="#{companyBean.doSaveOrUpdate()}"
+					value="SaveOrUpdate" />
+				<h:commandButton action="#{companyBean.doDelete()}"
+					value="Delete" />
+				<h:commandButton action="#{companyBean.doCancel}" value="cancel" />
+			</h:panelGrid>
+		</h:form>
+
+
+	</ui:define>
+
+
+</ui:composition>
