@@ -10,6 +10,18 @@
 	<ui:define name="title"></ui:define>
 	<ui:define name="content">
 		<form>
+
+
+			<p:commandButton icon="fa fa-arrow-left"
+				oncomplete="PF('sidebar2').show()" />
+
+			<!-- <h:sidebar widgetVar="sidebar2" position="right" baseZIndex="10000">
+				<h1 style="font-weight: normal">Right Sidebar</h1>
+				<p:commandButton value="Cancel" oncomplete="PF('sidebar2').hide()" />
+			</h:sidebar>
+ -->
+
+
 			<fieldset>
 				<label>Text</label> <input id="text" type="text"
 					value="Hello, World!" /> <input type="submit" id="shout"

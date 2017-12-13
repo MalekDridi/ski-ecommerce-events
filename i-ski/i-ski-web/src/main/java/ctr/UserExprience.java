@@ -30,6 +30,7 @@ import utilities.DirecoryInitializer;
 @ManagedBean
 @ViewScoped
 public class UserExprience {
+	private List<String> images;
 	private UserExperience userExperienceSelected = new UserExperience();;
 	private List<UserExperience> userExpriences;
 	private List<SkiTrip> skiTrips;
@@ -54,6 +55,14 @@ public class UserExprience {
 	@ManagedProperty(value = "#{identity}")
 	private Identity identity;
 
+	public void ShowImages() {
+
+		images = new ArrayList<String>();
+		for (int i = 1; i <= 12; i++) {
+			images.add("nature" + i + ".jpg");
+		}
+	}
+
 	public void doShowExerienceForm() {
 		showExerienceForm = true;
 	}
@@ -62,13 +71,15 @@ public class UserExprience {
 		if (reviewUserExperience.equals("LIKE")) {
 			userExperienceServiveLocal.reviewUserExperience(identity.getUser(), userExperienceSelected,
 					ReviewUserExperience.LIKE);
-			likeRender = true;
-			disLikeRender = true;
+
+			// likeRender = true;
+			// disLikeRender = true;
 		} else {
 			userExperienceServiveLocal.reviewUserExperience(identity.getUser(), userExperienceSelected,
 					ReviewUserExperience.DISLIKE);
-			disLikeRender = true;
-			likeRender = true;
+			// disLikeRender = true;
+			// likeRender = true;
+			// //nbDisLike = +1;
 		}
 
 	}
@@ -79,8 +90,11 @@ public class UserExprience {
 	}
 
 	public void doRemoveExperience() {
+		// if (identity.getUser().equals(userExperienceSelected.getUser())) {
+
 		userExperienceServiveLocal.delete(userExperienceSelected);
 		init();
+
 	}
 
 	public void upload(FileUploadEvent event) {
@@ -131,9 +145,15 @@ public class UserExprience {
 
 	@PostConstruct
 	private void init() {
+		images = new ArrayList<String>();
+		for (int i = 1; i <= 5; i++) {
+			images.add("fucker" + i);
+		}
+
 		skiTrips = new ArrayList<SkiTrip>();
 		skiTrips = skiTripServiceLocal.ifndSkiTripsByUser(identity.getUser());
 		userExpriences = userExperienceServiveLocal.findAll();
+
 	}
 
 	public List<SkiTrip> getSkiTrips() {
@@ -246,6 +266,10 @@ public class UserExprience {
 
 	public void setImg(String img) {
 		this.img = img;
+	}
+
+	public List<String> getImages() {
+		return images;
 	}
 
 }

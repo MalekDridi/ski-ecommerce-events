@@ -1,5 +1,6 @@
 package services;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -25,7 +26,7 @@ public class RTransport implements RTransportRemote, RTransportLocal {
 
 	@Override
 	public Transport add(Transport rt) {
-		entityManager.persist(rt);
+		entityManager.merge(rt);
 		entityManager.flush();
 		return rt;
 		
@@ -40,7 +41,8 @@ public class RTransport implements RTransportRemote, RTransportLocal {
 
 	@Override
 	public void deleteRtransport(Transport rt) {
-		entityManager.remove(rt);
+		System.out.println("Transport ::::"+rt.getId());
+		entityManager.createNativeQuery("DELETE FROM transport  WHERE id=" + rt.getId()).executeUpdate();
 	}
 	
 
@@ -59,5 +61,27 @@ public class RTransport implements RTransportRemote, RTransportLocal {
 		query.setParameter("param", id);
 		return (Transport) query.getSingleResult();
 	}
+
+	@Override
+	public List<Transport> findRTransportByUser(User user) {
+		String jpql = "SELECT e FROM Transport e WHERE e.user = :param " ;
+		Query query = entityManager.createQuery(jpql);
+		query.setParameter("param", user);
+		return query.getResultList();
+		
+	}
+
+	
+
+	@Override
+	public List<Transport> findTransByParams(String moyen, String place) {
+		String jpql = "SELECT e FROM Transport e WHERE e.moyenTransport like :param1 and e.fromP like :param2";
+		Query query = entityManager.createQuery(jpql);
+		query.setParameter("param1", "%"+moyen+"%");
+		query.setParameter("param2", "%"+place+"%");
+		return query.getResultList();	}
+	 
+	
+	
 
 }

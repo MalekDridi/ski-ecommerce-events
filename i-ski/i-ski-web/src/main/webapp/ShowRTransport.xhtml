@@ -1,0 +1,141 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/WEB-INF/template/template.xhtml"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="head">
+
+	</ui:define>
+	<ui:define name="content">
+		<div id="parallax_block" class="parallax_block">
+
+    <div class="rd-parallax-layer" data-speed="0.15" data-type="media"><img src="resources/img/event.jpg"/> </div>
+
+	
+    <div class="parallax_block__content">
+        <div class="container">
+            <h2 >Available Transport Requests
+            </h2>
+
+	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+	
+		<h:form>
+				<div class="panel-body">
+						<div class="row">
+							<div class="col-md-12 col-sm-12 col-xs-12">
+							
+					
+					
+					
+			<h:dataTable value="#{rtransportBean.myRtransports}" var="rt" border="5" id="datatable" class="table table-hover">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Departure Date" />
+					</f:facet>
+					<h:outputText value="#{rt.dateIn}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Return Date " />
+					</f:facet>
+					<h:outputText value="#{rt.dateOut}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value=" From place" />
+					</f:facet>
+					<h:outputText value="#{rt.fromP}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value=" To place" />
+					</f:facet>
+					<h:outputText value="#{rt.toP}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value=" Mean of transport" />
+					</f:facet>
+					<h:outputText value="#{rt.moyenTransport}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Number of places" />
+					</f:facet>
+					<h:outputText value="#{rt.nombrePlaces}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#" />
+					</f:facet>
+					<h:commandButton action="Update" value="Select" class="btn" >
+						<f:setPropertyActionListener value="#{rt}" target="#{reservationBean.transportSelected}"></f:setPropertyActionListener>
+					</h:commandButton>
+					
+					
+				</h:column>
+				
+				
+   
+   
+   
+   
+   
+   
+			</h:dataTable>
+			
+			<h:panelGrid> 
+   <h:outputText value="Mean of transport :    " />
+   <h:inputText value="#{reservationBean.transportSelected.moyenTransport}" />
+   <br></br>
+   <h:outputText value="Number of places to reserve : " />
+   <h:inputText value="#{reservationBean.nbPlaces}" />
+   <br></br>
+   <h:commandButton action="#{reservationBean.doAddReservation()}" value="Book" class="btn">			
+					</h:commandButton>
+					</h:panelGrid>
+
+ <div class="carousel_tabs">
+
+
+
+<a id="tab_3" class="tab_item" href="Accueil.jsf">Home </a>
+
+
+            <a id="tab_1" class="tab_item" href="MyTransportRequests.jsf">My Transport Requests</a>
+            
+             <a id="tab_2" class="tab_item" href="MyReservations.jsf">My Reservations</a>
+             
+             <a id="tab_4" class="tab_item" href="viewPie.jsf">Most used transports</a>
+             
+             <a id="tab_5" class="tab_item" href="searchResult.jsf">Search transport</a>
+             
+              
+		</div>
+
+
+</div></div></div>
+		</h:form>
+		<div>
+	<p:chart type="pie" model="#{rtransportBean.pieModel1}" style="width:400px;height:300px" />
+	</div>
+		 </div>
+
+        <div class="bg_figure">
+            <div class="figure_1"></div>
+
+            <div class="figure_2"></div>
+        </div>
+    </div>
+    
+    
+</div>
+		
+</ui:define>
+
+
+</ui:composition>

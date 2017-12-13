@@ -22,6 +22,14 @@ public class Identity {
 		if (userLoggedIn != null) {
 			user = userLoggedIn;
 			loggedIn = true;
+			navigateTo = "/UserExperienceView?faces-redirect=true";
+
+			// navigateTo = "/Feedback/ListTrades?faces-redirect=true";
+			// navigateTo = "/NewFile?faces-redirect=true";
+
+		} else {
+			navigateTo = "/Accueil?faces-redirect=true";
+			
 			if (userLoggedIn.getUserType().equals("Admin")) {
 				navigateTo = "/ListEventA?faces-redirect=true";
 			} else if (userLoggedIn.getUserType().equals("User"))
@@ -31,9 +39,6 @@ public class Identity {
 					navigateTo = "/AccueilO?faces-redirect=true";
 		} 
 		
-		else {
-			navigateTo = "/horror?faces-redirect=true";
-		}
 
 		return navigateTo;
 	}

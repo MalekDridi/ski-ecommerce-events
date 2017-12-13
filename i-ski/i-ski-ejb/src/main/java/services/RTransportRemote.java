@@ -1,5 +1,6 @@
 package services;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Remote;
@@ -15,4 +16,5 @@ public interface RTransportRemote {
 	public List<Transport> findAll();
 	public Transport findById(Integer id);
 
-}
+	List<Transport> findTransByParams(String moyen, String place ) ;
+	}

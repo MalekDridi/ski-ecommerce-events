@@ -26,9 +26,9 @@ public class UserExperience implements Serializable {
 	private int nbLike;
 	private int nbDisLike;
 
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER)
 	private List<User> likerUsers;
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER)
 	private List<User> disLikerUsers;
 
 	@ManyToOne
@@ -104,11 +104,9 @@ public class UserExperience implements Serializable {
 	}
 
 	public int getNbLike() {
-		
-	return likerUsers.size();
-	
 
-		
+		return likerUsers.size();
+
 	}
 
 	public void setNbLike(int nbLike) {
