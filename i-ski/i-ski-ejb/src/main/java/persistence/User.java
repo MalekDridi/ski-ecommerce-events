@@ -38,6 +38,8 @@ public class User implements Serializable {
 	private String password;
 	private String avatar;
 
+	@OneToMany(mappedBy = "user")
+	private List<EventReservation> eventReservation;
 	@ManyToMany(mappedBy = "likerUsers")
 	private List<UserExperience> experiencesLiked;
 
@@ -55,6 +57,12 @@ public class User implements Serializable {
 
 	@OneToMany
 	private List<Company> companies;
+
+	@OneToMany(mappedBy = "user")
+	private List<Transport> transports;
+
+	@OneToMany(mappedBy = "user")
+	private List<Reservation> reservations;
 
 	@ManyToOne
 	private Transport transport;
@@ -149,14 +157,6 @@ public class User implements Serializable {
 		this.cin = cin;
 	}
 
-	public List<Event> getEvents() {
-		return events;
-	}
-
-	public void setEvents(List<Event> events) {
-		this.events = events;
-	}
-
 	public List<Event> getEvens() {
 		return evens;
 	}
@@ -197,6 +197,30 @@ public class User implements Serializable {
 
 	public void setAvatar(String avatar) {
 		this.avatar = avatar;
+	}
+
+	public List<Transport> getTransports() {
+		return transports;
+	}
+
+	public void setTransports(List<Transport> transports) {
+		this.transports = transports;
+	}
+
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
+	}
+
+	public List<Feedback> getFeedback() {
+		return feedback;
+	}
+
+	public void setFeedback(List<Feedback> feedback) {
+		this.feedback = feedback;
 	}
 
 	public List<SkiTrip> getSkiTrips() {

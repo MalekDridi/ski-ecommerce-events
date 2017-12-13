@@ -1,5 +1,7 @@
 package services;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -11,6 +13,7 @@ import javax.persistence.Query;
 
 import persistence.Accomodation;
 import persistence.Event;
+import persistence.Trade;
 import persistence.User;
 
 /**
@@ -39,11 +42,23 @@ public class EventManagement implements EventManagementRemote, EventManagementLo
 	public void updateEvent(Event event) {
 		entityManager.merge(event);
 	}
+	
+	
 	@Override
 	public void updateEventById(int id) {
 		entityManager.merge(findEventById(id));
 	}
 
+	@Override
+	public void cancelEvent(Event event) {
+		
+	
+		String jpql = "UPDATE Event s SET s.state = 'Canceled' WHERE s.state = 'available'";
+		Query query = entityManager.createQuery(jpql);
+		
+		entityManager.merge(event);
+		
+	}
 	@Override
 	public void deleteEventById(int id) {
 		entityManager.remove(findEventById(id));
@@ -85,14 +100,63 @@ public class EventManagement implements EventManagementRemote, EventManagementLo
 		return query.getResultList();
 	}
 	@Override
-	public List<Event> findAllEvents2(User u) {
+	public List<Event> findAvailableEvents() {
+		String jpql = "SELECT u FROM Event u WHERE u.state=:p AND u.endDate> :date";
+		Query query = entityManager.createQuery(jpql);
+		query.setParameter("p", "Available");
+		Date date = Calendar.getInstance().getTime();
+		query.setParameter("date", date);
+		return query.getResultList();
+	}
+	@Override
+	public List<Event> findOAvailableEvents(User user) {
+		String jpql = "SELECT u FROM Event u WHERE u.state=:p AND u.endDate> :date and u.user=:z";
+		Query query = entityManager.createQuery(jpql);
+		query.setParameter("p", "Available");
+		Date date = Calendar.getInstance().getTime();
+		query.setParameter("date", date);
+		query.setParameter("z", user);
+		return query.getResultList();
+	}
+	@Override
+	public List<Event> findCanceledEvents() {
+		String jpql = "SELECT u FROM Event u WHERE u.state<>:p";
+		Query query = entityManager.createQuery(jpql);
+		query.setParameter("p", "Available");
+		return query.getResultList();
+	}
+	@Override
+
+	public List<Event> findPastEvents() {
+		String jpql = "SELECT u FROM Event u WHERE u.endDate< :date";
+		Query query = entityManager.createQuery(jpql);
+		Date date = Calendar.getInstance().getTime();
+		query.setParameter("date", date);
+		return query.getResultList();
+	}
+	
+	@Override
+
+	public List<Event> findOPastEvents(User user) {
+		String jpql = "SELECT u FROM Event u WHERE u.endDate< :date and u.user=:p";
+		Query query = entityManager.createQuery(jpql);
+		Date date = Calendar.getInstance().getTime();
+		query.setParameter("date", date);
+		query.setParameter("p", user);
+		return query.getResultList();
+	}
+	
+	
+	@Override
+	public List<Event> findAllEvents2(User user) {
 		
 		String jpql = "SELECT c FROM Event c WHERE c.user=:p";
 		Query query = entityManager.createQuery(jpql);
-		query.setParameter("p", u);
+		query.setParameter("p", user);
 		return query.getResultList();
 	}
-
+	
+	
 	@Override
 	public List<Event> findEventByMultiChoices(String location, String Station) {
 
@@ -113,4 +177,5 @@ public class EventManagement implements EventManagementRemote, EventManagementLo
 		Query query = entityManager.createQuery(jpql);
 		return query.getResultList();		
 	}
+	
 }

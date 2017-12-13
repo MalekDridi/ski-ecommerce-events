@@ -11,5 +11,6 @@ public interface UserServiceLocal extends IGenericDAO<User> {
 	public User findByEmail(String l);
 
 	User login(String login, String password);
+	
 
 }

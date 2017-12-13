@@ -20,9 +20,11 @@ public class Transport implements Serializable {
 	private String moyenTransport;
 	private int nombrePlaces;
 	
-	@OneToMany (mappedBy="transport")
-	private List<User> users;
+	@ManyToOne
+	private User user;
 	
+	@OneToMany (mappedBy="transport")
+	private List<Reservation>  reservations;
 	
 	public int getId() {
 		return id;
@@ -71,15 +73,22 @@ public class Transport implements Serializable {
 	public Transport() {
 		super();
 	}
-	public List<User> getUsers() {
-		return users;
+	public User getUser() {
+		return user;
 	}
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
+	}
+
 	
 	
 

@@ -28,12 +28,20 @@ public class Identity {
 			// navigateTo = "/NewFile?faces-redirect=true";
 
 		} else {
-			navigateTo = "/horror?faces-redirect=true";
-		}
+			navigateTo = "/Accueil?faces-redirect=true";
+			
+			if (userLoggedIn.getUserType().equals("Admin")) {
+				navigateTo = "/ListEventA?faces-redirect=true";
+			} else if (userLoggedIn.getUserType().equals("User"))
+				navigateTo = "/Accueil?faces-redirect=true";
+			
+			 else if (userLoggedIn.getUserType().equals("Organizer"))
+					navigateTo = "/AccueilO?faces-redirect=true";
+		} 
+		
 
 		return navigateTo;
 	}
-
 	public User getUser() {
 		return user;
 	}

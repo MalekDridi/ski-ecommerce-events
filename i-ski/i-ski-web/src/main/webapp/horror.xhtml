@@ -1,10 +1,98 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/WEB-INF/template/template.xhtml">
 
-<h:head></h:head>
-<body>ouups
-</body>
-</html>
+	<ui:define name="title">Login</ui:define>
+	<ui:define name="content">
+		
+      
+  
+
+	<div id="main" role="main">
+    <div class="container">
+        <div class="row">
+            <div class="main_content  col-sm-12">
+					
+						
+
+<h2 class="page_heading">Login or create an account</h2>
+
+<div id="account_login">
+	<div class="account_wrapper">
+		<div class="account_left">
+			<div class="account_section">
+				<h4>New here?</h4>
+
+				<p class="note">Registration is free and easy!</p>
+
+				<ul>
+					<li>Faster checkout</li>
+					<li>Save multiple shipping addresses</li>
+					<li>View and track orders and more</li>
+				</ul>
+
+				<a id="account_register__link" class="btn" href="#">Create an account</a>
+			</div>
+		</div>
+
+		<div class="account_right">
+			<div class="account_section">
+					<h4>Already registered?</h4>
+
+					<h:form>
+
+			<h:panelGrid columns="2">
+			<div class="form-group">
+						<label for="customer_email" class="control-label">Email address</label>
+				<h:inputText value="#{identity.user.email}" />
+				</div>
+				<div class="form-group">
+				<label for="customer_password" class="control-label">Password</label>
+				<h:inputSecret value="#{identity.user.password}" />
+				</div>
+			</h:panelGrid>
+              <p> There's something wrong, Check Email or password </p>
+			<h:commandButton class="btn" action="#{identity.doLogin()}" value="login" />
+
+		</h:form>	
+
+					
+					
+					
+					
+					  
+					
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+<h:outputScript>
+    <![CDATA[
+
+	jQuery(function(e){e(document).ready(function(){e("#account_register").find(".alert").length?e("#account_login, #account_reset").hide():e("#account_reset").find(".alert").length?(e("#account_reset").show(),e("#account_register").hide()):e("#account_register, #account_reset").hide(),e("#account_reset__link").on("click",function(c){c.preventDefault(),e("#account_reset").slideDown()}),e(".account_reset__cancel").on("click",function(c){c.preventDefault(),e("#account_reset").slideUp()}),e("#account_register__link").on("click",function(c){c.preventDefault(),e("#account_reset:visible")&&e("#account_reset").slideUp(),e("#account_login").delay(0).slideUp(),e("#account_register").delay(0).slideDown()}),e(".account_register__cancel").on("click",function(c){c.preventDefault(),e("#account_register").slideUp(),e("#account_login").slideDown()}),"#recover"==window.location.hash&&e("#account_reset").show(),e('#account_register a[href*="recover"]').on("click",function(){e("#account_register").slideUp(),e("#account_login").slideDown(),e("#account_reset").slideDown()}),e("#account_login form, #account_register form, #account_reset form").formValidation()})});
+
+    ]]>
+</h:outputScript>
+					
+				</div>
+
+				
+			</div>
+		</div>
+	</div>
+
+
+
+	
+	</ui:define>
+
+
+</ui:composition>
+
+
