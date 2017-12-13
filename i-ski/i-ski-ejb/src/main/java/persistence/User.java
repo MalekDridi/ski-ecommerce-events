@@ -59,8 +59,6 @@ public class User implements Serializable {
 	@ManyToOne
 	private Transport transport;
 
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-	private List<Contract> contract;
 
 	@OneToMany(mappedBy = "user")
 	private List<Feedback> feedback;
@@ -175,14 +173,7 @@ public class User implements Serializable {
 		this.companies = companies;
 	}
 
-	public List<Contract> getContract() {
-		return contract;
-	}
-
-	public void setContract(List<Contract> contract) {
-		this.contract = contract;
-	}
-
+	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}

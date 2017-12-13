@@ -4,21 +4,22 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-	template="/WEB-INF/template/template.xhtml">
+	template="/WEB-INF/template/template.xhtml"
+                xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="title">login</ui:define>
 	<ui:define name="content">
 		<h:form>
-
+			<p:graphicImage value="/resources/img/log.png"></p:graphicImage>
 			<h:panelGrid columns="2">
 				<h:outputText value="login" />
 				<h:inputText value="#{identity.user.email}" />
 				<h:outputText value="password" />
 				<h:inputSecret value="#{identity.user.password}" />
 			</h:panelGrid>
-
-			<h:commandButton action="#{identity.doLogin()}" value="login" />
-
+<p:commandButton action="#{identity.doLogin()}" value="login" styleClass="button"/>
+		<!-- 	<h:commandButton action="#{identity.doLogin()}" value="login" />
+ -->
 		</h:form>
 	</ui:define>
 

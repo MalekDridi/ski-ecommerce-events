@@ -9,7 +9,13 @@
 
 	<ui:define name="title">experience view</ui:define>
 	<ui:define name="content">
-		<h:form id="form" enctype="multipart/form-data">
+
+		<style>
+		.Bimage {background-image: "/resources/img/homp.png"}
+		</style>
+
+		<h:form id="form" enctype="multipart/form-data" styleClass="Bimage">
+	
 
 			<p:growl id="messages" showDetail="true" />
 			<h:dataTable value="#{userExprience.skiTrips}" var="p" border="2"
@@ -37,6 +43,11 @@
 				rendered="#{userExprience.showExerienceForm}">
 				<h:outputText value="name : " />
 				<h:outputText value="#{userExprience.skiTripSelected.name}" />
+				<h:outputText value="image Upload" />
+				<p:fileUpload fileUploadListener="#{userExprience.copyFile}"
+					mode="advanced" auto="false" sizeLimit="10485760" multiple="true"
+					fileLimit="10" fileLimitMessage="Max 10 images"
+					dragDropSupport="true" update="@form" />
 				<h:outputText value="description : " />
 				<h:inputText value="#{userExprience.description}" />
 				<h:outputText value="rate : " />
@@ -50,19 +61,27 @@
 					</p:rating>
 				</h:panelGrid>
 
-				<h:outputText value="image Upload" />
-				<p:fileUpload fileUploadListener="#{userExprience.copyFile}"
-					mode="advanced" auto="false" sizeLimit="10485760" multiple="true"
-					fileLimit="10" fileLimitMessage="Max 10 images"
-					dragDropSupport="true" update="@form" />
+				
 
 
 				<p:commandButton action="#{userExprience.doShareExpeience()}"
 					value="share" />
+
+
 			</h:panelGrid>
+			<p:dock position="bottom">
+				<p:menuitem value="Home" icon="/resources/img/home.png"
+					url="experiencesWall.jsf" />
+				<p:menuitem value="Profile" icon="/resources/img/profil.png"
+					url="UserExperienceView.jsf" />
+
+
+				<p:menuitem value="Log Out" icon="/resources/img/out.png"
+					url="login.jsf" />
+
+
+			</p:dock>
 		</h:form>
-
-
 	</ui:define>
 
 
