@@ -46,8 +46,7 @@ public class User implements Serializable {
 	@ManyToMany(mappedBy = "disLikerUsers")
 	private List<UserExperience> experiencesDisLiked;
 
-	@ManyToMany(mappedBy = "users")
-	private List<Event> events;
+
 
 	@OneToMany(mappedBy = "user")
 	private List<Event> evens;
