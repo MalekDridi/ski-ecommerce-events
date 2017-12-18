@@ -15,7 +15,7 @@ import utilities.GenericDAO;
  */
 @Stateless
 @LocalBean
-@WebService(name = "UserPortype", portName = "UserPort", serviceName = "UserService", targetNamespace = "http://ws.Event.tn/")
+@WebService(name = "UserPortype", portName = "UserPort", serviceName = "UserService")
 public class UserService extends GenericDAO<User> implements UserServiceRemote, UserServiceLocal {
 
 	@PersistenceContext

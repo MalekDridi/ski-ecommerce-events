@@ -8,7 +8,7 @@ import javax.jws.WebService;
 import persistence.Equipment;
 
 @Remote
-@WebService
+
 public interface EquipmentManagementRemote {
 
 	void addEquipment(Equipment equipment);
